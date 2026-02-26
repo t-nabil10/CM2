@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication et Division des Nombres Décimaux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f766e;
+            --bg: #f3f4f6;
+            --text: #111827;
+            --muted: #6b7280;
+            --card-bg: #ffffff;
+            --radius: 10px;
+            --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            background: radial-gradient(circle at top, #e0f2fe, #eef2ff 40%, #f9fafb 80%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 12px;
+            font-size: 14px;
+            direction: ltr;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 14px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+        }
+
+        /* HEADER */
+        header {
+            background: radial-gradient(circle at top left, #1d4ed8, #0f172a);
+            color: white;
+            padding: 16px 18px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(59,130,246,0.4), transparent 70%);
+            top: -60px;
+            right: -50px;
+            opacity: 0.7;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .header-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: rgba(15,23,42,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 1;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .content {
+            padding: 16px 16px 20px;
+        }
+
+        /* SECTION */
+        .section {
+            margin-bottom: 16px;
+            padding: 14px 12px 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #eff6ff, #f9fafb);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        h2 {
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.25);
+        }
+
+        h2 i {
+            color: var(--primary);
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            margin: 12px 0 8px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* BLOCS DE TEXTE */
+        .rule-box {
+            background: linear-gradient(to right, #dcfce7, #ecfdf5);
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .example-box {
+            background: #ffffff;
+            padding: 14px 14px 12px;
+            border-radius: 10px;
+            margin: 14px 0;
+            border: 1px solid rgba(129, 140, 248, 0.4);
+            box-shadow: 0 4px 10px rgba(148, 163, 184, 0.15);
+        }
+
+        .data-sample {
+            background: linear-gradient(to right, #fef9c3, #fffbeb);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0 6px;
+            font-family: "JetBrains Mono", "Courier New", monospace;
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px dashed rgba(234, 179, 8, 0.7);
+            font-weight: 600;
+            color: #92400e;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .questions {
+            margin: 14px 0 6px;
+            counter-reset: question-counter;
+        }
+
+        .question-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .question {
+            padding: 12px 12px 10px;
+            background: linear-gradient(to right, #f9fafb, #edf2ff);
+            border-radius: 9px;
+            border: 1px solid rgba(129, 140, 248, 0.4);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 8px;
+            row-gap: 5px;
+            align-items: flex-start;
+        }
+
+        .question::before {
+            content: counter(question-counter);
+            counter-increment: question-counter;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6366f1, #4338ca);
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .question-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+
+        .question .answer-btn {
+            grid-column: 2 / 3;
+        }
+
+        .answer-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.18s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 3px;
+        }
+
+        .answer-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+
+        .answer {
+            background: linear-gradient(to right, #ecfeff, #e0f2fe);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-top: 6px;
+            margin-left: 26px;
+            border-left: 3px solid var(--secondary);
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .answer.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-3px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .note {
+            background: #fffbeb;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin: 12px 0 6px;
+            border: 1px solid rgba(234, 179, 8, 0.5);
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #78350f;
+        }
+
+        p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .math-example {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 14px 0;
+            padding: 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+        }
+
+        .properties-box {
+            background: linear-gradient(to right, #fef3c7, #fffbeb);
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin: 14px 0;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            font-size: 0.95rem;
+        }
+
+        .property-item {
+            margin: 10px 0;
+            padding-left: 8px;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .construction-box {
+            background: linear-gradient(to right, #e0e7ff, #ede9fe);
+            padding: 14px;
+            border-radius: 10px;
+            margin: 14px 0;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .construction-step {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .chapter-divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .chapter-divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2563eb, transparent);
+            z-index: 1;
+        }
+
+        .chapter-divider span {
+            background: white;
+            padding: 0 14px;
+            position: relative;
+            z-index: 2;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* BOUTON EN BAS DE PAGE */
+        .open-link-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .open-link-btn {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: #f9fafb;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .open-link-btn i {
+            font-size: 1rem;
+        }
+
+        .open-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(22, 163, 74, 0.4);
+            background: linear-gradient(135deg, #15803d, #166534);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            padding: 16px 18px;
+            border-radius: 10px;
+            margin: 18px 0;
+            border: 2px solid #3b82f6;
+            text-align: center;
+        }
+
+        .info-box i {
+            color: #1d4ed8;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 10px 12px;
+            background: #0f172a;
+            color: #e5e7eb;
+            font-size: 0.85rem;
+            margin-top: 18px;
+        }
+
+        .shape-visual {
+            text-align: center;
+            margin: 14px 0;
+            padding: 14px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 8px;
+            border: 2px dashed #0ea5e9;
+        }
+
+        .formula-box {
+            background: linear-gradient(to right, #fce7f3, #fae8ff);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border: 1px solid rgba(192, 38, 211, 0.3);
+            text-align: center;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #7e22ce;
+            margin: 8px 0;
+        }
+
+        /* Tableau pour multiplication par 10, 100, 1000 */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 10px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Multiplication posée */
+        .multiplication-posed {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: right;
+            display: inline-block;
+            margin: 10px auto;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .multiplication-posed table {
+            width: auto;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .multiplication-posed td {
+            padding: 3px 10px;
+            text-align: right;
+            border: none;
+        }
+
+        .multiplication-posed .line {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* Division posée */
+        .division-posed {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Améliorations pour les petits écrans */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            header {
+                padding: 14px 14px 12px;
+            }
+
+            .content {
+                padding: 14px 12px 16px;
+            }
+
+            .section {
+                padding: 12px 10px 12px;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .header-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .answer {
+                margin-left: 20px;
+            }
+
+            .open-link-btn {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+
+            .formula {
+                font-size: 1.1rem;
+            }
+
+            .math-example {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .multiplication-posed {
+                font-size: 1rem;
+                overflow-x: auto;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                font-size: 12px;
+            }
+            
+            h1 {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <div class="header-icon">×</div>
+                <div>
+                    <h1>Multiplication et Division des Nombres Décimaux</h1>
+                    <div class="subtitle">
+                        Mathématiques - Opérations avec les décimaux
+                        <span class="tag">Leçon Interactive</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            
+
+            
+
+            <div class="chapter-divider">
+                <span>La division décimale</span>
+            </div>
+
+            <!-- 3. La division décimale -->
+            <section class="section">
+                <h2><i class="fas fa-divide"></i> 3. La division décimale</h2>
+                
+                <div class="rule-box">
+                    <h3><i class="fas fa-info-circle"></i> a) Définition :</h3>
+                    <p><strong>Effectuer la division décimale</strong> du nombre \( a \) par le nombre \( b \), <strong>c'est calculer la valeur exacte ou une valeur approchée de ce quotient</strong>.</p>
+                    <p>Si le diviseur possède une virgule, il faudra <strong>modifier</strong> la division.</p>
+                </div>
+
+                <div class="example-box">
+                    <h3><i class="fas fa-calculator"></i> b) Exemple :</h3>
+                    <p>Pose la division de 423 par 18.</p>
+                    
+                    <div class="division-posed">
+                        <table style="width: auto; background: transparent;">
+                            <tr>
+                                <td style="font-size: 1.5rem; padding: 5px;">423</td>
+                                <td style="font-size: 1.5rem; padding: 5px;">|</td>
+                                <td style="font-size: 1.5rem; padding: 5px;">18</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">-36</td>
+                                <td></td>
+                                <td style="font-size: 1.5rem; padding: 5px;">23,5</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">63</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">-54</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">90</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">-90</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 20px;">0</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="property-item">
+                        <p><strong>Explication :</strong></p>
+                        <p>• 18 × 23 = 414, reste 9</p>
+                        <p>• On abaisse un 0 (car on veut des décimales) → 90</p>
+                        <p>• 18 × 5 = 90, reste 0</p>
+                        <p><strong>Résultat :</strong> \( 423 \div 18 = 23,5 \)</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h3><i class="fas fa-pen"></i> c) Application :</h3>
+                    
+                    <div class="questions">
+                        <div class="question-wrapper">
+                            <div class="question">
+                                <div class="question-content">
+                                    Pose la division de \( 56,4 \) par \( 4 \)
+                                </div>
+                                <button class="answer-btn" onclick="toggleAnswer(6, event)">
+                                    <i class="fas fa-eye"></i> Voir la solution
+                                </button>
+                            </div>
+                            <div class="answer" id="answer6">
+                                <div class="division-posed">
+                                    <table style="width: auto; background: transparent;">
+                                        <tr>
+                                            <td style="font-size: 1.5rem; padding: 5px;">56,4</td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">|</td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">-4</td>
+                                            <td></td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">14,1</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">16</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">-16</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">04</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">-4</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">0</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p><strong>Résultat :</strong> \( 56,4 \div 4 = 14,1 \)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question-wrapper">
+                            <div class="question">
+                                <div class="question-content">
+                                    Pose la division de \( 12,5 \) par \( 2,5 \)
+                                </div>
+                                <button class="answer-btn" onclick="toggleAnswer(7, event)">
+                                    <i class="fas fa-eye"></i> Voir la solution
+                                </button>
+                            </div>
+                            <div class="answer" id="answer7">
+                                <p><strong>Étape 1 :</strong> On supprime la virgule du diviseur</p>
+                                <p>\( 12,5 \div 2,5 = (12,5 \times 10) \div (2,5 \times 10) = 125 \div 25 \)</p>
+                                
+                                <div class="division-posed">
+                                    <table style="width: auto; background: transparent;">
+                                        <tr>
+                                            <td style="font-size: 1.5rem; padding: 5px;">125</td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">|</td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">25</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">-125</td>
+                                            <td></td>
+                                            <td style="font-size: 1.5rem; padding: 5px;">5</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px 20px;">0</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p><strong>Résultat :</strong> \( 12,5 \div 2,5 = 5 \)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Résumé -->
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <h3>Résumé des règles</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
+                    <div style="background: white; padding: 8px; border-radius: 6px;">
+                        <p><strong>Multiplication de décimaux</strong></p>
+                        <p>1. Multiplier sans virgule</p>
+                        <p>2. Additionner les chiffres après la virgule</p>
+                        <p>3. Placer la virgule dans le produit</p>
+                    </div>
+                    <div style="background: white; padding: 8px; border-radius: 6px;">
+                        <p><strong>Multiplication par 10, 100, 1000</strong></p>
+                        <p>×10 → 1 rang →</p>
+                        <p>×100 → 2 rangs →</p>
+                        <p>×1000 → 3 rangs →</p>
+                    </div>
+                    <div style="background: white; padding: 8px; border-radius: 6px; grid-column: span 2;">
+                        <p><strong>Division décimale</strong></p>
+                        <p>Si le diviseur a une virgule, on multiplie dividende et diviseur par 10, 100, 1000 pour éliminer la virgule.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton -->
+            <div class="open-link-container">
+                <button class="open-link-btn" onclick="openHtmlPage()">
+                    <i class="fas fa-window-restore"></i>
+                    Si la page ne s'affiche pas correctement : Cliquez ici
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p><span>× ÷ ,</span> Multiplication et Division des Nombres Décimaux - Mathématiques <span>× ÷ ,</span></p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(questionNumber, event) {
+            const answer = document.getElementById(`answer${questionNumber}`);
+            const button = event.currentTarget;
+            
+            if (answer.classList.contains('show')) {
+                answer.classList.remove('show');
+                button.innerHTML = '<i class="fas fa-eye"></i> Voir la solution';
+            } else {
+                answer.classList.add('show');
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Cacher la solution';
+            }
+        }
+
+        function openHtmlPage() {
+            const url = "#";
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        // Activer MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+            script.async = true;
+            document.head.appendChild(script);
+        })();
+    </script>
+</body>
+</html>
