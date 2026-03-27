@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Annonce de l'examen - Leçons ciblées</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Carte principale */
+        .exam-card {
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        /* En-tête rouge */
+        .header-red {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            padding: 1.2rem 1.2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .header-red h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .header-red h1 i {
+            font-size: 1.4rem;
+            background: rgba(255,255,255,0.2);
+            padding: 6px;
+            border-radius: 50%;
+        }
+
+        .exam-date {
+            background: #fef3c7;
+            color: #92400e;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-top: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Contenu */
+        .content {
+            padding: 1.2rem;
+        }
+
+        /* Ligne d'info matière */
+        .info-row {
+            background: #fef9e3;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 5px solid #f59e0b;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: #fffbeb;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #d97706;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text .label {
+            font-size: 0.7rem;
+            color: #78716c;
+            letter-spacing: 0.3px;
+        }
+
+        .info-text .value {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #2c2b26;
+        }
+
+        /* Règles de l'examen */
+        .rules-box {
+            background: #fff1f0;
+            border-radius: 20px;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-right: 4px solid #dc2626;
+        }
+
+        .rules-title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: #991b1b;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .rules-list li {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .rules-list li i {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #dc2626;
+            font-size: 0.8rem;
+        }
+
+        /* Section des leçons */
+        .lessons-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 0.8rem 0.8rem 1rem 0.8rem;
+            margin-bottom: 18px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-header i {
+            font-size: 1.2rem;
+            color: #2563eb;
+            background: #eef2ff;
+            padding: 6px;
+            border-radius: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        /* Liste des leçons */
+        .lessons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #eef2ff;
+        }
+
+        .lesson-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+
+        .lesson-content {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #0f172a;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .lesson-detail {
+            font-size: 0.75rem;
+            color: #5b6e8c;
+            line-height: 1.4;
+        }
+
+        /* Badges pour les sous-thèmes */
+        .topics-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .badge-topic {
+            background: #eef2ff;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e40af;
+        }
+
+        /* Rappel cahier */
+        .notebook-reminder {
+            background: #ecfdf5;
+            border-radius: 18px;
+            padding: 12px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 4px solid #10b981;
+        }
+
+        .notebook-reminder i {
+            font-size: 1.4rem;
+            color: #059669;
+        }
+
+        /* Interdiction calculatrice */
+        .calc-ban {
+            background: #fee2e2;
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calc-ban i {
+            color: #b91c1c;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px 12px 12px;
+            font-size: 0.7rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 450px) {
+            body {
+                padding: 12px;
+            }
+            .header-red h1 {
+                font-size: 1.4rem;
+            }
+            .lesson-card {
+                padding: 10px;
+            }
+            .lesson-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+            .lesson-title {
+                font-size: 0.9rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="exam-card">
+        <div class="header-red">
+            <h1>
+                <i class="fas fa-calendar-check"></i>
+                Annonce de l'examen
+            </h1>
+            <div class="exam-date">
+                <i class="fas fa-calendar-alt"></i> 2 et 3 avril 2026
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Matière -->
+            <div class="info-row">
+                <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="info-text">
+                    <div class="label">Matière</div>
+                    <div class="value">Mathématiques</div>
+                </div>
+            </div>
+
+            <!-- Consignes de l'examen -->
+            <div class="rules-box">
+                <div class="rules-title">
+                    <i class="fas fa-gavel"></i> Consignes de l'examen
+                </div>
+                <ul class="rules-list">
+                    <li><i class="fas fa-ban"></i> <strong>Calculatrice interdite</strong> (aucun modèle autorisé)</li>
+                    <li><i class="fas fa-book"></i> <strong>Apporter les cahiers pour vérification</strong> (cahier de mathématiques)</li>
+                    <li><i class="fas fa-pencil-ruler"></i> Matériel autorisé : règle, compas, équerre, rapporteur</li>
+                    <li><i class="fas fa-mobile-alt"></i> Téléphones portables strictement interdits</li>
+                </ul>
+            </div>
+
+            <!-- Leçons ciblées -->
+            <div class="lessons-section">
+                <div class="section-header">
+                    <i class="fas fa-book-open"></i>
+                    <h2>Leçons ciblées</h2>
+                </div>
+                <div class="lessons-list">
+                    <!-- Leçon 1 : Construction d'une figure -->
+                    <div class="lesson-card">
+                        <div class="lesson-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">📐 Construction d'une figure</div>
+                            <div class="lesson-detail">
+                                Utilisation de la règle, du compas et de l'équerre. <br>
+                                Constructions géométriques : triangles, parallèles, perpendiculaires, médiatrice d'un segment. <br>
+                                Reproduction de figures, programmes de construction.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leçon 2 : Les Nombres Entiers Naturels : Division -->
+                    <div class="lesson-card">
+                        <div class="lesson-icon"><i class="fas fa-divide"></i></div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">🔢 Les Nombres Entiers Naturels : Division</div>
+                            <div class="lesson-detail">
+                                Division euclidienne : dividende, diviseur, quotient, reste. <br>
+                                Critères de divisibilité (par 2, 3, 5, 9, 10). <br>
+                                Division exacte et division avec reste. Problèmes concrets.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leçon 3 : La multiplication et la division des Nombres Décimaux -->
+                    <div class="lesson-card">
+                        <div class="lesson-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">📊 Multiplication et division des Nombres Décimaux</div>
+                            <div class="lesson-detail">
+                                Multiplication d'un décimal par un entier / par un décimal. <br>
+                                Division d'un décimal par un entier / par un décimal. <br>
+                                Technique opératoire, placement de la virgule. <br>
+                                Problèmes de proportionnalité et applications.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sous-thèmes résumés -->
+                <div class="topics-badge">
+                    <span class="badge-topic">Médiatrice · Perpendiculaire</span>
+                    <span class="badge-topic">Division euclidienne</span>
+                    <span class="badge-topic">Divisibilité</span>
+                    <span class="badge-topic">Multiplication décimale</span>
+                    <span class="badge-topic">Division décimale</span>
+                    <span class="badge-topic">Programmes de construction</span>
+                </div>
+            </div>
+
+            <!-- Rappel cahier -->
+            <div class="notebook-reminder">
+                <i class="fas fa-notebook"></i>
+                <div style="font-size: 0.85rem; line-height: 1.4;">
+                    <strong>📓 Rappel important :</strong> Vous devez apporter vos <strong>cahiers de mathématiques</strong> pour vérification.
+                    Le cahier fait partie de l'organisation et du suivi du travail.
+                </div>
+            </div>
+
+            <!-- Interdiction calculatrice -->
+            <div class="calc-ban">
+                <i class="fas fa-calculator"></i>
+                <span style="font-size: 0.8rem; font-weight: 500;">❌ Calculatrice strictement interdite. Les calculs doivent être posés et rédigés sur la copie.</span>
+            </div>
+
+            <footer>
+                <i class="fas fa-calendar-week"></i> Dates de l'examen : 2 et 3 avril 2026  
+                <span style="display: inline-block; margin: 4px 0;">•</span>  
+                <i class="fas fa-pen"></i> Révisez bien les leçons et bonne chance à tous
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>
