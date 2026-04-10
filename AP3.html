@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Géométrie : Aire & Périmètre - Triangle, Losange, Parallélogramme, Trapèze, Carré, Rectangle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f5fa 0%, #e2eaf1 100%);
+            padding: 1.8rem;
+            color: #1a2c3e;
+        }
+
+        .geo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            backdrop-filter: blur(1px);
+            border: 1px solid rgba(52, 152, 219, 0.25);
+        }
+
+        .hero-geo {
+            background: linear-gradient(115deg, #1f4e6e, #2c6e8f, #1b5a7a);
+            padding: 1.8rem 2rem;
+            color: #fef9e6;
+            border-bottom: 5px solid #f4b942;
+        }
+
+        .hero-geo h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-geo h1 i {
+            background: #f4b942;
+            color: #1f3e4c;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #2f6f8f;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Grille principale */
+        .grid-geo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            padding: 1.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+            border: 1px solid #d4e2ed;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            background: #fef7e8;
+            padding: 1rem 1.4rem;
+            border-bottom: 3px solid #f4b942;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header i {
+            color: #e67e22;
+            font-size: 1.3rem;
+        }
+
+        .card-body {
+            padding: 1.4rem 1.5rem;
+            flex: 1;
+        }
+
+        .def-box {
+            background: #f8fafd;
+            border-radius: 1rem;
+            padding: 0.9rem 1rem;
+            border-right: 5px solid #f4b942;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .formula {
+            background: #eef2f7;
+            border-radius: 1rem;
+            padding: 0.8rem;
+            text-align: center;
+            margin: 0.8rem 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .example-schema {
+            background: #f9f6ef;
+            border-radius: 1rem;
+            padding: 0.8rem;
+            text-align: center;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        .liste-props {
+            list-style: none;
+            padding-right: 0;
+        }
+        .liste-props li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .liste-props li i {
+            color: #2c7a5e;
+            width: 22px;
+        }
+
+        .highlight {
+            background: #f9e6cf;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #1f4e6e;
+            color: #fef2df;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 0 1.8rem 0.8rem 1.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 3px solid #f4b942;
+            display: inline-block;
+        }
+
+        .terminologie {
+            background: #fef6e6;
+            margin: 0 1.8rem 1.8rem 1.8rem;
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            font-weight: 500;
+        }
+
+        .terminologie span {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 40px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .notions-box {
+            background: #eef3fa;
+            border-radius: 1.2rem;
+            padding: 1rem 1.8rem;
+            margin: 0 1.8rem 1.5rem 1.8rem;
+            border-right: 6px solid #f4b942;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+            }
+            .grid-geo {
+                gap: 1rem;
+            }
+        }
+
+        .btn-solution {
+            background: #2c6e8f;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+        .btn-solution:hover {
+            background: #1f4e6e;
+        }
+        .solution-box {
+            background: #eef2f5;
+            padding: 10px;
+            border-radius: 1rem;
+            margin-top: 10px;
+            border-right: 3px solid #f4b942;
+        }
+    </style>
+</head>
+<body>
+<div class="geo-container">
+    <div class="hero-geo">
+        <h1>
+            <i class="fas fa-shapes"></i>
+            Géométrie : Aires, Périmètres & Figures essentielles
+        </h1>
+        <div class="badge-group">
+            <span class="badge"><i class="fas fa-draw-polygon"></i> Triangle - Losange</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Parallélogramme - Trapèze</span>
+            <span class="badge"><i class="fas fa-square"></i> Carré - Rectangle</span>
+        </div>
+        <p style="margin-top: 12px; font-size:0.85rem;"><i class="fas fa-lightbulb"></i> Maîtrisez les formules d'aire et de périmètre : définitions claires, exemples et exercices interactifs.</p>
+    </div>
+
+    
+
+        <!-- 3. Parallélogramme -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-parallelogram"></i> Parallélogramme
+            </div>
+            <div class="card-body">
+                <div class="def-box">
+                    <strong>📏 Définition :</strong> Un parallélogramme est un quadrilatère dont les côtés sont <strong>parallèles et égaux deux à deux</strong>.
+                </div>
+                <div class="example-schema">
+                    <i class="fas fa-shapes"></i> Côtés opposés parallèles et de même longueur.
+                </div>
+                <div class="formula">
+                    🟩 <strong>Aire</strong> = L × h &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Périmètre</strong> = 2 × (L + l)
+                </div>
+                <ul class="liste-props">
+                    <li><i class="fas fa-ruler"></i> L : Longueur (un côté)</li>
+                    <li><i class="fas fa-ruler-combined"></i> l : largeur (côté adjacent)</li>
+                    <li><i class="fas fa-chart-line"></i> h : hauteur (distance entre les deux côtés parallèles)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. Trapèze -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i> Trapèze
+            </div>
+            <div class="card-body">
+                <div class="def-box">
+                    <strong>📐 Définition :</strong> Un trapèze est un quadrilatère avec <strong>seulement deux côtés opposés parallèles</strong> (appelés bases).
+                </div>
+                <div class="example-schema">
+                    <i class="fas fa-bezier-curve"></i> Bases parallèles : grande base B et petite base b.
+                </div>
+                <div class="formula">
+                    📏 <strong>Aire</strong> = <span style="font-size:1.1rem;">(B + b) × h / 2</span><br>
+                    🔁 <strong>Périmètre</strong> = B + b + c + d   (c et d : côtés non parallèles)
+                </div>
+                <ul class="liste-props">
+                    <li><i class="fas fa-chart-simple"></i> B : grande base</li>
+                    <li><i class="fas fa-chart-line"></i> b : petite base</li>
+                    <li><i class="fas fa-arrow-up"></i> h : hauteur (distance entre les bases)</li>
+                    <li><i class="fas fa-grip-lines"></i> c, d : les deux autres côtés</li>
+                </ul>
+            </div>
+        </div>
+
+         
+    </div>
+
+    <footer>
+        <i class="fas fa-shapes"></i> Triangle – Losange – Parallélogramme – Trapèze – Carré – Rectangle : formules d'aire et de périmètre. Maîtrisez la géométrie !
+    </footer>
+</div>
+
+<script>
+    // Gestion de l'affichage des solutions pour les exercices interactifs
+    const btns = document.querySelectorAll('.btn-solution');
+    btns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const solId = this.getAttribute('data-sol-id');
+            const solDiv = document.getElementById(solId);
+            if (solDiv.style.display === 'none' || solDiv.style.display === '') {
+                solDiv.style.display = 'block';
+                this.innerHTML = 'Masquer la solution <i class="fas fa-eye-slash"></i>';
+            } else {
+                solDiv.style.display = 'none';
+                this.innerHTML = 'Voir la solution <i class="fas fa-eye"></i>';
+            }
+        });
+    });
+</script>
+</body>
+</html>
