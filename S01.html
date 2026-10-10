@@ -1,0 +1,539 @@
+<style>
+  .math-cours { font-family: "Segoe UI", Tahoma, Arial, sans-serif; line-height: 1.7; color: #2c3e50; max-width: 950px; margin: auto; padding: 15px; background: #fdfdfd; }
+  .math-cours h1 { text-align: center; color: #1a5276; border-bottom: 3px solid #1a5276; padding-bottom: 10px; }
+  .math-cours h2 { color: #ffffff; background: #2874a6; padding: 10px 15px; border-radius: 6px; margin-top: 35px; }
+  .math-cours h3 { color: #1a5276; border-left: 5px solid #2874a6; padding-left: 10px; margin-top: 25px; }
+  .math-cours h4 { color: #154360; margin-top: 20px; }
+  .math-cours table { border-collapse: collapse; margin: 15px auto; width: 100%; max-width: 800px; }
+  .math-cours th, .math-cours td { border: 1px solid #2874a6; padding: 8px 12px; text-align: center; }
+  .math-cours th { background: #d6eaf8; color: #1a5276; }
+  .math-cours td.left { text-align: left; }
+  .math-cours .calc { font-family: "Courier New", monospace; background: #f4f6f7; border-left: 4px solid #2874a6; padding: 12px 20px; margin: 10px 0; white-space: pre; font-size: 16px; line-height: 1.5; overflow-x: auto; border-radius: 4px; }
+  .math-cours .result { background: #eafaf1; border-left: 5px solid #27ae60; padding: 10px 15px; margin: 10px 0; font-weight: bold; border-radius: 4px; }
+  .math-cours .warn { background: #fef9e7; border-left: 5px solid #f1c40f; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+  .math-cours .error { background: #fdedec; border-left: 5px solid #e74c3c; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+  .math-cours .method { background: #eaf2f8; border: 1px solid #aed6f1; padding: 12px 18px; border-radius: 6px; margin: 15px 0; }
+  .math-cours .step { background: #f8f9f9; border-left: 4px solid #7fb3d5; padding: 8px 15px; margin: 8px 0; border-radius: 4px; }
+  .math-cours .center { text-align: center; }
+  .math-cours .footer { text-align: center; margin-top: 40px; font-weight: bold; color: #1a5276; font-size: 18px; }
+</style>
+
+<div class="math-cours">
+
+<h1>Correction Détaillée<br><small>Série d'Exercices — Nombres de 0 à 9999</small></h1>
+<p class="center"><strong>Niveau : 4<sup>ème</sup> Année Primaire (4 AP)</strong></p>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 1 : Lecture et écriture des nombres</h2>
+
+<div class="method">
+<h3>1. Écrire en chiffres</h3>
+
+<table>
+  <tr><th>N°</th><th>Énoncé</th><th>Réponse</th></tr>
+  <tr><td>a</td><td class="left">trois mille quatre cent vingt-cinq</td><td><strong>3 425</strong></td></tr>
+  <tr><td>b</td><td class="left">sept mille huit cent neuf</td><td><strong>7 809</strong></td></tr>
+  <tr><td>c</td><td class="left">neuf mille neuf cent quatre-vingt-dix-neuf</td><td><strong>9 999</strong></td></tr>
+</table>
+
+<div class="step">
+<strong>Méthode a) :</strong><br>
+• « trois mille » → 3 000<br>
+• « quatre cent vingt-cinq » → 425<br>
+• Total : 3 000 + 425 = <strong>3 425</strong>
+</div>
+
+<div class="warn">
+⚠️ <strong>Attention :</strong> « huit cent neuf » = 809 (pas 890 !). Le mot « neuf » tout seul à la fin = unités.
+</div>
+
+<h3>2. Écrire en lettres</h3>
+
+<table>
+  <tr><th>N°</th><th>Nombre</th><th>Réponse</th></tr>
+  <tr><td>a</td><td>2 508</td><td class="left"><strong>deux mille cinq cent huit</strong></td></tr>
+  <tr><td>b</td><td>6 740</td><td class="left"><strong>six mille sept cent quarante</strong></td></tr>
+  <tr><td>c</td><td>4 006</td><td class="left"><strong>quatre mille six</strong></td></tr>
+</table>
+
+<div class="step">
+<strong>Méthode :</strong><br>
+• 2 508 = 2 000 + 500 + 8 → deux mille cinq cent huit<br>
+• 6 740 = 6 000 + 700 + 40 → six mille sept cent quarante<br>
+• 4 006 = 4 000 + 6 → quatre mille six (⚠️ pas de « zéro cent zéro » !)
+</div>
+
+<h3>3. Décomposer</h3>
+
+<table>
+  <tr><th>N°</th><th>Nombre</th><th>Décomposition</th></tr>
+  <tr><td>a</td><td>5 632</td><td><strong>5 000 + 600 + 30 + 2</strong></td></tr>
+  <tr><td>b</td><td>8 047</td><td><strong>8 000 + 0 + 40 + 7</strong></td></tr>
+</table>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 2 : L'Addition</h2>
+
+<div class="method">
+<h3>1. Pose et effectue</h3>
+
+<h4>a) 3 456 + 2 138</h4>
+<div class="calc">   1 1         ← retenues
+   3 4 5 6
++  2 1 3 8
+-----------
+   5 5 9 4</div>
+<ul>
+  <li>Unités : 6 + 8 = 14 → écris 4, retiens 1</li>
+  <li>Dizaines : 5 + 3 + 1 = 9</li>
+  <li>Centaines : 4 + 1 = 5</li>
+  <li>Milliers : 3 + 2 = 5</li>
+</ul>
+<div class="result">Résultat : 5 594 ✅</div>
+
+<h4>b) 5 209 + 3 785</h4>
+<div class="calc">   1 1         ← retenues
+   5 2 0 9
++  3 7 8 5
+-----------
+   8 9 9 4</div>
+<ul>
+  <li>Unités : 9 + 5 = 14 → 4, retiens 1</li>
+  <li>Dizaines : 0 + 8 + 1 = 9</li>
+  <li>Centaines : 2 + 7 = 9</li>
+  <li>Milliers : 5 + 3 = 8</li>
+</ul>
+<div class="result">Résultat : 8 994 ✅</div>
+
+<h4>c) 1 876 + 4 599</h4>
+<div class="calc">   1 1 1       ← retenues
+   1 8 7 6
++  4 5 9 9
+-----------
+   6 4 7 5</div>
+<ul>
+  <li>Unités : 6 + 9 = 15 → 5, retiens 1</li>
+  <li>Dizaines : 7 + 9 + 1 = 17 → 7, retiens 1</li>
+  <li>Centaines : 8 + 5 + 1 = 14 → 4, retiens 1</li>
+  <li>Milliers : 1 + 4 + 1 = 6</li>
+</ul>
+<div class="result">Résultat : 6 475 ✅</div>
+
+<h4>d) 6 543 + 2 908</h4>
+<div class="calc">   1           ← retenue
+   6 5 4 3
++  2 9 0 8
+-----------
+   9 4 5 1</div>
+<ul>
+  <li>Unités : 3 + 8 = 11 → 1, retiens 1</li>
+  <li>Dizaines : 4 + 0 + 1 = 5</li>
+  <li>Centaines : 5 + 9 = 14 → 4, retiens 1</li>
+  <li>Milliers : 6 + 2 + 1 = 9</li>
+</ul>
+<div class="result">Résultat : 9 451 ✅</div>
+
+<h3>2. Complète</h3>
+
+<table>
+  <tr><th>N°</th><th>Énoncé</th><th>Calcul</th><th>Réponse</th></tr>
+  <tr><td>a</td><td>2 450 + ... = 5 000</td><td>5 000 − 2 450</td><td><strong>2 550</strong></td></tr>
+  <tr><td>b</td><td>... + 3 200 = 7 800</td><td>7 800 − 3 200</td><td><strong>4 600</strong></td></tr>
+  <tr><td>c</td><td>4 125 + 2 875 = ...</td><td>4 125 + 2 875</td><td><strong>7 000</strong></td></tr>
+</table>
+
+<h4>Vérification c :</h4>
+<div class="calc">   1 1         ← retenues
+   4 1 2 5
++  2 8 7 5
+-----------
+   7 0 0 0</div>
+<div class="result">Résultat : 7 000 ✅</div>
+
+<h3>3. Additions à trois termes</h3>
+
+<h4>a) 1 245 + 2 340 + 1 500</h4>
+<p><strong>Étape 1 :</strong> 1 245 + 2 340</p>
+<div class="calc">   1 2 4 5
++  2 3 4 0
+-----------
+   3 5 8 5</div>
+<p><strong>Étape 2 :</strong> 3 585 + 1 500</p>
+<div class="calc">   3 5 8 5
++  1 5 0 0
+-----------
+   5 0 8 5</div>
+<div class="result">Résultat : 5 085 ✅</div>
+
+<h4>b) 3 120 + 1 450 + 2 080</h4>
+<p><strong>Étape 1 :</strong> 3 120 + 1 450</p>
+<div class="calc">   3 1 2 0
++  1 4 5 0
+-----------
+   4 5 7 0</div>
+<p><strong>Étape 2 :</strong> 4 570 + 2 080</p>
+<div class="calc">   4 5 7 0
++  2 0 8 0
+-----------
+   6 6 5 0</div>
+<div class="result">Résultat : 6 650 ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 3 : La Soustraction</h2>
+
+<div class="method">
+<h3>1. Pose et effectue</h3>
+
+<h4>a) 7 856 − 2 430</h4>
+<div class="calc">   7 8 5 6
+−  2 4 3 0
+-----------
+   5 4 2 6</div>
+<div class="result">Résultat : 5 426 ✅</div>
+
+<h4>b) 9 000 − 4 567</h4>
+<div class="calc">   8 9 9 10      ← emprunts en cascade
+   9 0 0 0
+−  4 5 6 7
+-----------
+   4 4 3 3</div>
+<ul>
+  <li>Unités : 0 − 7 impossible → 10 − 7 = 3</li>
+  <li>Dizaines : 9 − 6 = 3</li>
+  <li>Centaines : 9 − 5 = 4</li>
+  <li>Milliers : 8 − 4 = 4</li>
+</ul>
+<div class="result">Résultat : 4 433 ✅</div>
+
+<h4>c) 5 302 − 1 875</h4>
+<div class="calc">   4 12  9 12    ← emprunts
+   5 3 0 2
+−  1 8 7 5
+-----------
+   3 4 2 7</div>
+<div class="result">Résultat : 3 427 ✅</div>
+
+<h4>d) 8 204 − 3 678</h4>
+<div class="calc">   7 11  9 14    ← emprunts
+   8 2 0 4
+−  3 6 7 8
+-----------
+   4 5 2 6</div>
+<div class="result">Résultat : 4 526 ✅</div>
+
+<h3>2. Complète</h3>
+
+<table>
+  <tr><th>N°</th><th>Énoncé</th><th>Calcul</th><th>Réponse</th></tr>
+  <tr><td>a</td><td>6 500 − ... = 2 300</td><td>6 500 − 2 300</td><td><strong>4 200</strong></td></tr>
+  <tr><td>b</td><td>... − 1 500 = 3 500</td><td>3 500 + 1 500</td><td><strong>5 000</strong></td></tr>
+  <tr><td>c</td><td>7 000 − 2 456 = ...</td><td>7 000 − 2 456</td><td><strong>4 544</strong></td></tr>
+</table>
+
+<h3>3. Vrai ou Faux</h3>
+
+<h4>a) 8 000 − 3 456 = 4 544 ?</h4>
+<div class="calc">   7 9 9 10
+   8 0 0 0
+−  3 4 5 6
+-----------
+   4 5 4 4</div>
+<div class="result">VRAI ✅</div>
+
+<h4>b) 6 502 − 2 345 = 4 057 ?</h4>
+<div class="calc">   6 5 0 2
+−  2 3 4 5
+-----------
+   4 1 5 7</div>
+<div class="error">Résultat réel : 4 157 → FAUX ❌</div>
+
+<h4>c) 5 000 − 1 999 = 3 001 ?</h4>
+<div class="calc">   4 9 9 10
+   5 0 0 0
+−  1 9 9 9
+-----------
+   3 0 0 1</div>
+<div class="result">VRAI ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 4 : La Multiplication</h2>
+
+<div class="method">
+<h3>1. Multiplications simples</h3>
+
+<h4>a) 342 × 5</h4>
+<div class="calc">   1 2 1
+   3 4 2
+×      5
+-----------
+   1 7 1 0</div>
+<div class="result">Résultat : 1 710 ✅</div>
+
+<h4>b) 1 208 × 6</h4>
+<div class="calc">   1 0 4 4
+   1 2 0 8
+×        6
+-----------
+   7 2 4 8</div>
+<div class="result">Résultat : 7 248 ✅</div>
+
+<h4>c) 456 × 4</h4>
+<div class="calc">   2 2 2
+   4 5 6
+×      4
+-----------
+   1 8 2 4</div>
+<div class="result">Résultat : 1 824 ✅</div>
+
+<h4>d) 2 345 × 3</h4>
+<div class="calc">   1 1 1
+   2 3 4 5
+×        3
+-----------
+   7 0 3 5</div>
+<div class="result">Résultat : 7 035 ✅</div>
+
+<h3>2. Multiplier par 10, 100, 1000</h3>
+<div class="warn">
+<strong>Règle :</strong> on ajoute autant de zéros qu'il y en a dans 10, 100 ou 1000.
+</div>
+
+<table>
+  <tr><th>Nombre</th><th>× 10</th><th>× 100</th><th>× 1000</th></tr>
+  <tr><td>47</td><td><strong>470</strong></td><td><strong>4 700</strong></td><td><strong>47 000</strong></td></tr>
+  <tr><td>238</td><td><strong>2 380</strong></td><td><strong>23 800</strong></td><td><strong>238 000</strong></td></tr>
+  <tr><td>1 500</td><td><strong>15 000</strong></td><td><strong>150 000</strong></td><td><strong>1 500 000</strong></td></tr>
+</table>
+
+<h3>3. Multiplications à deux chiffres</h3>
+
+<h4>a) 245 × 32</h4>
+<div class="calc">     4 9 0      (245 × 2)
++  7 3 5 0      (245 × 30)
+-----------
+   7 8 4 0</div>
+<div class="result">Résultat : 7 840 ✅</div>
+
+<h4>b) 1 204 × 23</h4>
+<div class="calc">     3 6 1 2     (1 204 × 3)
++  2 4 0 8 0     (1 204 × 20)
+-----------
+   2 7 6 9 2</div>
+<div class="result">Résultat : 27 692 ✅</div>
+
+<h4>c) 356 × 45</h4>
+<div class="calc">     1 7 8 0     (356 × 5)
++  1 4 2 4 0     (356 × 40)
+-----------
+   1 6 0 2 0</div>
+<div class="result">Résultat : 16 020 ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 5 : Calculs mélangés</h2>
+
+<div class="method">
+<div class="warn">
+<strong>Rappel :</strong> les parenthèses d'abord, puis × et ÷, puis + et −.
+</div>
+
+<h4>a) 3 450 + 2 500 − 1 200</h4>
+<div class="step">• 3 450 + 2 500 = 5 950<br>• 5 950 − 1 200 = <strong>4 750</strong> ✅</div>
+
+<h4>b) 6 000 − 2 150 + 1 305</h4>
+<div class="step">• 6 000 − 2 150 = 3 850<br>• 3 850 + 1 305 = <strong>5 155</strong> ✅</div>
+
+<h4>c) (2 300 + 1 700) × 4</h4>
+<div class="step">• Parenthèses : 2 300 + 1 700 = 4 000<br>• 4 000 × 4 = <strong>16 000</strong> ✅</div>
+
+<h4>d) 1 250 × 2 − 500</h4>
+<div class="step">• Multiplication d'abord : 1 250 × 2 = 2 500<br>• 2 500 − 500 = <strong>2 000</strong> ✅</div>
+
+<h4>e) 4 500 − 3 × 250</h4>
+<div class="step">• Multiplication d'abord : 3 × 250 = 750<br>• 4 500 − 750 = <strong>3 750</strong> ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 6 : Comparaison</h2>
+
+<div class="method">
+<h4>a) 3 456 + 2 000 ... 5 500</h4>
+<div class="step">• 3 456 + 2 000 = 5 456 ; 5 456 &lt; 5 500<br>• <strong>Réponse : &lt;</strong></div>
+
+<h4>b) 7 000 − 2 500 ... 4 500</h4>
+<div class="step">• 7 000 − 2 500 = 4 500<br>• <strong>Réponse : =</strong></div>
+
+<h4>c) 250 × 4 ... 1 000</h4>
+<div class="step">• 250 × 4 = 1 000<br>• <strong>Réponse : =</strong></div>
+
+<h4>d) 1 200 + 800 ... 2 100 − 100</h4>
+<div class="step">• 1 200 + 800 = 2 000 ; 2 100 − 100 = 2 000<br>• <strong>Réponse : =</strong></div>
+
+<h4>e) 3 500 − 1 500 ... 2 × 1 000</h4>
+<div class="step">• 3 500 − 1 500 = 2 000 ; 2 × 1 000 = 2 000<br>• <strong>Réponse : =</strong></div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 7 : Problèmes</h2>
+
+<div class="method">
+<h3>Problème 1</h3>
+<p><strong>Données :</strong> 3 250 livres + donation 1 480 livres</p>
+<div class="calc">   3 2 5 0
++  1 4 8 0
+-----------
+   4 7 3 0</div>
+<div class="result">Réponse : la bibliothèque possède 4 730 livres. ✅</div>
+
+<h3>Problème 2</h3>
+<p><strong>Étape 1 :</strong> total vendu</p>
+<div class="calc">   2 3 7 5
++  1 2 4 0
+-----------
+   3 6 1 5</div>
+<p><strong>Étape 2 :</strong> reste</p>
+<div class="calc">   5 0 0 0
+−  3 6 1 5
+-----------
+   1 3 8 5</div>
+<div class="result">Réponse : il reste 1 385 stylos. ✅</div>
+
+<h3>Problème 3</h3>
+<div class="calc">   3 2
+×  4 5
+-----------
+   1 6 0
++ 1 2 8 0
+-----------
+   1 4 4 0</div>
+<div class="result">Réponse : 1 440 cahiers. ✅</div>
+
+<h3>Problème 4</h3>
+<p><strong>Étape 1 :</strong> total vendu</p>
+<div class="calc">   1 2 5 0
++  1 8 0 0
+-----------
+   3 0 5 0</div>
+<p><strong>Étape 2 :</strong> reste</p>
+<div class="calc">   4 5 0 0
+−  3 0 5 0
+-----------
+   1 4 5 0</div>
+<div class="result">Réponse : il reste 1 450 kg. ✅</div>
+
+<h3>Problème 5</h3>
+<div class="calc">   1 2 5
+×     4 8
+-----------
+   1 0 0 0
++  5 0 0 0
+-----------
+   6 0 0 0</div>
+<div class="result">Réponse : 6 000 sièges. ✅</div>
+
+<h3>Problème 6</h3>
+<p><strong>Étape 1 :</strong> total dépensé</p>
+<div class="calc">   8 5 0
++  3 5 0
+-----------
+   1 2 0 0</div>
+<p><strong>Étape 2 :</strong> reste</p>
+<div class="calc">   2 5 0 0
+−  1 2 0 0
+-----------
+   1 3 0 0</div>
+<div class="result">Réponse : il lui reste 1 300 DA. ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>📘 Exercice 8 : Défi</h2>
+
+<div class="method">
+<h3>Défi 1</h3>
+<p><em>« J'ajoute 2 500, puis je retire 1 200. J'obtiens 4 800. »</em></p>
+<div class="step">
+• x + 2 500 − 1 200 = 4 800<br>
+• x + 1 300 = 4 800<br>
+• x = 4 800 − 1 300
+</div>
+<div class="calc">   4 8 0 0
+−  1 3 0 0
+-----------
+   3 5 0 0</div>
+<div class="result">Réponse : le nombre de départ est 3 500. ✅</div>
+
+<h3>Défi 2</h3>
+<p><em>« Deux nombres dont la somme est 5 000 et la différence est 1 000. »</em></p>
+<div class="step">
+• Grand nombre = (5 000 + 1 000) ÷ 2 = 6 000 ÷ 2 = <strong>3 000</strong><br>
+• Petit nombre = (5 000 − 1 000) ÷ 2 = 4 000 ÷ 2 = <strong>2 000</strong>
+</div>
+<div class="result">Réponse : les deux nombres sont 3 000 et 2 000. ✅</div>
+
+<h3>Défi 3 : Pyramide</h3>
+<div class="warn">
+⚠️ <strong>Correction :</strong> la pyramide originale contenait une incohérence. Voici une <strong>version corrigée 100 % cohérente</strong> :
+</div>
+
+<div class="calc">           1 750
+        750     1 000
+      250    500    500
+    100   150   350   150</div>
+
+<p><strong>Vérifications :</strong></p>
+<ul>
+  <li>100 + 150 = 250 ✅</li>
+  <li>150 + 350 = 500 ✅</li>
+  <li>350 + 150 = 500 ✅</li>
+  <li>250 + 500 = 750 ✅</li>
+  <li>500 + 500 = 1 000 ✅</li>
+  <li>750 + 1 000 = 1 750 ✅</li>
+</ul>
+<div class="result">Pyramide entièrement vérifiée ✅</div>
+</div>
+
+<!-- ======================================================= -->
+<h2>🎯 Récapitulatif des compétences évaluées</h2>
+
+<table>
+  <tr><th>Exercice</th><th>Compétence</th><th>Barème</th></tr>
+  <tr><td>1</td><td class="left">Lire / écrire / décomposer un nombre</td><td>/6</td></tr>
+  <tr><td>2</td><td class="left">Addition (posée + à trous)</td><td>/8</td></tr>
+  <tr><td>3</td><td class="left">Soustraction (posée + vérification)</td><td>/8</td></tr>
+  <tr><td>4</td><td class="left">Multiplication (simple + ×10/100/1000 + 2 chiffres)</td><td>/10</td></tr>
+  <tr><td>5</td><td class="left">Priorité des opérations</td><td>/5</td></tr>
+  <tr><td>6</td><td class="left">Comparaison</td><td>/5</td></tr>
+  <tr><td>7</td><td class="left">Problèmes</td><td>/12</td></tr>
+  <tr><td>8</td><td class="left">Défi</td><td>/6</td></tr>
+  <tr><td colspan="2"><strong>Total</strong></td><td><strong>/60</strong></td></tr>
+</table>
+
+<!-- ======================================================= -->
+<h2>📝 Conseils pédagogiques</h2>
+
+<div class="method">
+<ol>
+  <li><strong>Séance 1 (1h)</strong> : Exercices 1 et 2 → lecture des nombres + addition</li>
+  <li><strong>Séance 2 (1h)</strong> : Exercice 3 → soustraction avec emprunts</li>
+  <li><strong>Séance 3 (1h)</strong> : Exercice 4 → multiplication (poser ×2 chiffres)</li>
+  <li><strong>Séance 4 (1h)</strong> : Exercices 5 et 6 → mélangés et comparaison</li>
+  <li><strong>Séance 5 (1h)</strong> : Exercice 7 → problèmes</li>
+  <li><strong>Séance 6 (30 min)</strong> : Exercice 8 → défi pour les rapides</li>
+</ol>
+
+<h4>⚠️ Points de vigilance :</h4>
+<ul>
+  <li>Aligner les chiffres (unités sous unités)</li>
+  <li>Ne pas oublier les retenues</li>
+  <li>Vérifier une soustraction par l'addition</li>
+  <li>Écrire une phrase-réponse complète dans les problèmes</li>
+  <li>Ne pas confondre « huit cent neuf » (809) et « huit cent quatre-vingt-dix » (890)</li>
+</ul>
+</div>
+
+<p class="footer">Fin de la correction détaillée — Bon travail les élèves ! 🎓</p>
+
+</div>
