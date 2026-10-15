@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesure de Longueurs, Masses et Aires — 5APG</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Tahoma, Arial, sans-serif;
+    line-height: 1.6; color: #222; margin: 0; padding: 12px; background: #f0f4f8;
+    word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .container {
+    max-width: 900px; margin: 0 auto; background: #fff;
+    padding: 22px 20px; border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  h1 {
+    color: #1a5276; text-align: center; font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    line-height: 1.3; margin: 0 0 20px; padding-bottom: 12px;
+    border-bottom: 3px solid #1a5276;
+  }
+  h2 {
+    color: #1a5276; background: #eaf2f8; padding: 10px 14px;
+    border-left: 5px solid #1a5276; border-radius: 4px;
+    margin-top: 26px; font-size: clamp(1rem, 3.8vw, 1.3rem); line-height: 1.3;
+  }
+  h3 { color: #2874a6; margin-top: 18px; font-size: clamp(0.95rem, 3.4vw, 1.1rem); }
+  p, li { font-size: clamp(0.9rem, 3.2vw, 1.05rem); }
+  hr { border: none; border-top: 2px dashed #bbb; margin: 22px 0; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  table { border-collapse: collapse; width: 100%; min-width: 320px; background: #fff; font-size: clamp(0.8rem, 3vw, 1rem); }
+  th, td { border: 1px solid #ccc; padding: 10px 8px; text-align: center; }
+  th { background: #1a5276; color: #fff; font-size: clamp(0.8rem, 2.9vw, 0.95rem); }
+  tr:nth-child(even) { background: #f4f8fb; }
+  .formule {
+    background: #fff8e1; border-left: 4px solid #f39c12; padding: 10px 14px;
+    margin: 12px 0; font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: clamp(0.95rem, 3.4vw, 1.15rem); text-align: center; border-radius: 4px;
+  }
+  .encadre { background: #e8f8f5; border: 2px solid #16a085; border-radius: 8px; padding: 12px 16px; margin: 15px 0; }
+  .conseil { background: #fef9e7; border-left: 5px solid #f1c40f; padding: 12px 16px; margin: 20px 0; border-radius: 4px; font-style: italic; font-size: clamp(0.85rem, 3.2vw, 1rem); }
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 5px 0; }
+  strong { color: #1a5276; }
+  code { background: #eef; padding: 2px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 0.9em; }
+
+  /* EXERCICE INTERACTIF */
+  .exo {
+    background: #f8fbfd; border: 2px solid #d6eaf8; border-radius: 10px;
+    padding: 16px 18px; margin: 18px 0;
+  }
+  .exo .enonce { font-size: clamp(0.9rem, 3.2vw, 1.05rem); margin-bottom: 12px; }
+  .exo .enonce strong { color: #1a5276; }
+  .btn-corr {
+    background: #16a085; color: #fff; border: none; border-radius: 8px;
+    padding: 10px 18px; font-size: clamp(0.85rem, 3.2vw, 1rem);
+    font-weight: bold; cursor: pointer; transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+    -webkit-appearance: none; appearance: none;
+  }
+  .btn-corr:hover { background: #138d75; }
+  .btn-corr:active { transform: scale(0.97); }
+  .btn-corr .arrow { transition: transform 0.2s; display: inline-block; }
+  .btn-corr.open .arrow { transform: rotate(90deg); }
+
+  .correction {
+    display: none; background: #eafaf1; border-left: 5px solid #27ae60;
+    border-radius: 6px; padding: 14px 16px; margin-top: 12px;
+    font-size: clamp(0.88rem, 3.2vw, 1rem); color: #145a32;
+    animation: fadeIn 0.3s ease;
+  }
+  .correction.show { display: block; }
+  .correction strong { color: #0b5345; }
+  .correction .etape { display: block; margin: 4px 0; }
+  .correction .resultat {
+    display: inline-block; background: #27ae60; color: #fff;
+    padding: 3px 10px; border-radius: 6px; font-weight: bold;
+    margin-top: 8px; font-family: "Cambria Math", serif;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 8px; }
+    .container { padding: 16px 14px; border-radius: 10px; }
+    h1 { font-size: 1.15rem; }
+    h2 { padding: 8px 12px; }
+    th, td { padding: 6px 4px; font-size: 0.78rem; }
+    .exo { padding: 12px 14px; }
+    .btn-corr { padding: 9px 14px; width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+
+
+<!-- ============================================ -->
+<h2>5. Comparaison des mesures</h2>
+
+<p>Pour <strong>comparer</strong> deux mesures, il faut d'abord les mettre dans la <strong>même unité</strong>, puis comparer les nombres.</p>
+
+<div class="encadre">
+<h3>Méthode :</h3>
+<ol>
+  <li>Je convertis les deux mesures dans la <strong>même unité</strong>.</li>
+  <li>Je compare les <strong>nombres</strong> obtenus.</li>
+  <li>J'utilise les symboles : <strong>&lt;</strong> (plus petit), <strong>&gt;</strong> (plus grand), <strong>=</strong> (égal).</li>
+</ol>
+</div>
+
+<div class="formule">&lt; &nbsp; plus petit que &nbsp;&nbsp;|&nbsp;&nbsp; &gt; &nbsp; plus grand que &nbsp;&nbsp;|&nbsp;&nbsp; = &nbsp; égal à</div>
+
+<!-- EXO 1 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 1 :</strong> Comparer 2,5 m et 250 cm.
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis dans la même unité :</span>
+    <span class="etape">2,5 m = <strong>250 cm</strong></span>
+    <span class="etape">Je compare : 250 cm ... 250 cm</span>
+    <span class="resultat">2,5 m = 250 cm</span>
+  </div>
+</div>
+
+<!-- EXO 2 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 2 :</strong> Comparer 3 kg et 2 500 g.
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis dans la même unité :</span>
+    <span class="etape">3 kg = <strong>3 000 g</strong></span>
+    <span class="etape">Je compare : 3 000 g ... 2 500 g</span>
+    <span class="resultat">3 kg &gt; 2 500 g</span>
+  </div>
+</div>
+
+<!-- EXO 3 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 3 :</strong> Comparer 1,5 m² et 120 dm².
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis dans la même unité :</span>
+    <span class="etape">1,5 m² = <strong>150 dm²</strong></span>
+    <span class="etape">Je compare : 150 dm² ... 120 dm²</span>
+    <span class="resultat">1,5 m² &gt; 120 dm²</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>6. Addition des mesures</h2>
+
+<p>Pour <strong>additionner</strong> des mesures, il faut qu'elles soient dans la <strong>même unité</strong>. Si ce n'est pas le cas, on convertit d'abord.</p>
+
+<div class="encadre">
+<h3>Méthode :</h3>
+<ol>
+  <li>Je convertis toutes les mesures dans la <strong>même unité</strong>.</li>
+  <li>J'additionne les <strong>nombres</strong>.</li>
+  <li>J'écris le <strong>résultat</strong> avec l'unité.</li>
+</ol>
+</div>
+
+<div class="formule">3 m + 45 cm &nbsp; ➜ &nbsp; 300 cm + 45 cm = 345 cm</div>
+
+<!-- EXO 4 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 1 :</strong> Calculer 2,5 m + 45 cm.
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis en cm : 2,5 m = <strong>250 cm</strong></span>
+    <span class="etape">J'additionne : 250 cm + 45 cm = <strong>295 cm</strong></span>
+    <span class="resultat">2,5 m + 45 cm = 295 cm = 2,95 m</span>
+  </div>
+</div>
+
+<!-- EXO 5 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 2 :</strong> Calculer 3 kg + 250 g + 1,5 kg.
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis en g : 3 kg = <strong>3 000 g</strong> ; 1,5 kg = <strong>1 500 g</strong></span>
+    <span class="etape">J'additionne : 3 000 + 250 + 1 500 = <strong>4 750 g</strong></span>
+    <span class="resultat">3 kg + 250 g + 1,5 kg = 4 750 g = 4,75 kg</span>
+  </div>
+</div>
+
+<!-- EXO 6 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 3 :</strong> Calculer 2 m² + 150 dm².
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">Je convertis en dm² : 2 m² = <strong>200 dm²</strong></span>
+    <span class="etape">J'additionne : 200 + 150 = <strong>350 dm²</strong></span>
+    <span class="resultat">2 m² + 150 dm² = 350 dm² = 3,5 m²</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ============================================ -->
+<h2>7. Résumé</h2>
+
+<ul>
+  <li><strong>Longueurs :</strong> mètre (m) — ×10 / ÷10</li>
+  <li><strong>Masses :</strong> gramme (g) — ×10 / ÷10</li>
+  <li><strong>Aires :</strong> mètre carré (m²) — ×100 / ÷100 ⚠️</li>
+  <li><strong>Comparer :</strong> convertir dans la même unité, puis comparer.</li>
+  <li><strong>Additionner :</strong> convertir dans la même unité, puis additionner.</li>
+</ul>
+
+<div class="conseil">
+💡 <strong>Conseil :</strong> Toujours convertir dans la <strong>même unité</strong> avant de comparer ou d'additionner !
+</div>
+
+</div>
+
+<script>
+function toggleCorr(btn) {
+  var corr = btn.nextElementSibling;
+  if (corr.classList.contains('show')) {
+    corr.classList.remove('show');
+    btn.classList.remove('open');
+    btn.innerHTML = '<span class="arrow">▶</span> Afficher la correction';
+  } else {
+    corr.classList.add('show');
+    btn.classList.add('open');
+    btn.innerHTML = '<span class="arrow">▶</span> Masquer la correction';
+  }
+}
+</script>
+
+</body>
+</html>
