@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Nombres Décimaux — Opérations — 5APG</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Tahoma, Arial, sans-serif;
+    line-height: 1.6; color: #222; margin: 0; padding: 12px; background: #f0f4f8;
+    word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .container {
+    max-width: 900px; margin: 0 auto; background: #fff;
+    padding: 22px 20px; border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  h1 {
+    color: #1a5276; text-align: center; font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    line-height: 1.3; margin: 0 0 20px; padding-bottom: 12px;
+    border-bottom: 3px solid #1a5276;
+  }
+  h2 {
+    color: #1a5276; background: #eaf2f8; padding: 10px 14px;
+    border-left: 5px solid #1a5276; border-radius: 4px;
+    margin-top: 26px; font-size: clamp(1rem, 3.8vw, 1.3rem); line-height: 1.3;
+  }
+  h3 { color: #2874a6; margin-top: 18px; font-size: clamp(0.95rem, 3.4vw, 1.1rem); }
+  p, li { font-size: clamp(0.9rem, 3.2vw, 1.05rem); }
+  hr { border: none; border-top: 2px dashed #bbb; margin: 22px 0; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 15px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  table { border-collapse: collapse; width: 100%; min-width: 320px; background: #fff; font-size: clamp(0.8rem, 3vw, 1rem); }
+  th, td { border: 1px solid #ccc; padding: 10px 8px; text-align: center; }
+  th { background: #1a5276; color: #fff; font-size: clamp(0.8rem, 2.9vw, 0.95rem); }
+  tr:nth-child(even) { background: #f4f8fb; }
+  .formule {
+    background: #fff8e1; border-left: 4px solid #f39c12; padding: 10px 14px;
+    margin: 12px 0; font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: clamp(0.95rem, 3.4vw, 1.15rem); text-align: center; border-radius: 4px;
+  }
+  .encadre { background: #e8f8f5; border: 2px solid #16a085; border-radius: 8px; padding: 12px 16px; margin: 15px 0; }
+  .conseil { background: #fef9e7; border-left: 5px solid #f1c40f; padding: 12px 16px; margin: 20px 0; border-radius: 4px; font-style: italic; font-size: clamp(0.85rem, 3.2vw, 1rem); }
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 5px 0; }
+  strong { color: #1a5276; }
+  code { background: #eef; padding: 2px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 0.9em; }
+
+  /* EXERCICE INTERACTIF */
+  .exo {
+    background: #f8fbfd; border: 2px solid #d6eaf8; border-radius: 10px;
+    padding: 16px 18px; margin: 18px 0;
+  }
+  .exo .enonce { font-size: clamp(0.9rem, 3.2vw, 1.05rem); margin-bottom: 12px; }
+  .exo .enonce strong { color: #1a5276; }
+  .btn-corr {
+    background: #16a085; color: #fff; border: none; border-radius: 8px;
+    padding: 10px 18px; font-size: clamp(0.85rem, 3.2vw, 1rem);
+    font-weight: bold; cursor: pointer; transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+    -webkit-appearance: none; appearance: none;
+  }
+  .btn-corr:hover { background: #138d75; }
+  .btn-corr:active { transform: scale(0.97); }
+  .btn-corr .arrow { transition: transform 0.2s; display: inline-block; }
+  .btn-corr.open .arrow { transform: rotate(90deg); }
+
+  .correction {
+    display: none; background: #eafaf1; border-left: 5px solid #27ae60;
+    border-radius: 6px; padding: 14px 16px; margin-top: 12px;
+    font-size: clamp(0.88rem, 3.2vw, 1rem); color: #145a32;
+    animation: fadeIn 0.3s ease;
+  }
+  .correction.show { display: block; }
+  .correction strong { color: #0b5345; }
+  .correction .etape { display: block; margin: 4px 0; }
+  .correction .resultat {
+    display: inline-block; background: #27ae60; color: #fff;
+    padding: 3px 10px; border-radius: 6px; font-weight: bold;
+    margin-top: 8px; font-family: "Cambria Math", serif;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* POSITIONNEMENT DES OPÉRATIONS */
+  .pose {
+    display: inline-block; font-family: "Consolas", "Courier New", monospace;
+    background: #fefefe; border: 2px solid #34495e; border-radius: 6px;
+    padding: 12px 20px; margin: 10px auto; font-size: clamp(0.9rem, 3.4vw, 1.1rem);
+    line-height: 1.5; text-align: right;
+  }
+  .pose .ligne { display: block; letter-spacing: 2px; }
+  .pose .barre { border-top: 2px solid #34495e; display: block; margin: 4px 0; }
+
+  @media (max-width: 480px) {
+    body { padding: 8px; }
+    .container { padding: 16px 14px; border-radius: 10px; }
+    h1 { font-size: 1.15rem; }
+    h2 { padding: 8px 12px; }
+    th, td { padding: 6px 4px; font-size: 0.78rem; }
+    .exo { padding: 12px 14px; }
+    .btn-corr { padding: 9px 14px; width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+
+
+
+
+<!-- ============================================ -->
+<h2>3. Addition des nombres décimaux</h2>
+
+<p>Pour additionner des nombres décimaux, on <strong>aligne les virgules</strong> l'une sous l'autre, puis on additionne comme pour les nombres entiers.</p>
+
+<div class="encadre">
+<h3>Méthode :</h3>
+<ol>
+  <li>J'écris les nombres l'un sous l'autre en <strong>alignant les virgules</strong>.</li>
+  <li>Je complète avec des <strong>zéros</strong> si nécessaire.</li>
+  <li>J'additionne <strong>chiffre par chiffre</strong>, en partant de la droite.</li>
+  <li>Je place la <strong>virgule</strong> dans le résultat, alignée avec les autres.</li>
+</ol>
+</div>
+
+<!-- EXO 4 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 1 :</strong> Calculer 12,45 + 3,7
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">J'aligne les virgules :</span>
+    <div class="pose">
+      <span class="ligne">&nbsp;&nbsp;1 2 , 4 5</span>
+      <span class="ligne">+ &nbsp;3 , 7 0</span>
+      <span class="barre"></span>
+      <span class="ligne">&nbsp;&nbsp;1 6 , 1 5</span>
+    </div>
+    <span class="resultat">12,45 + 3,7 = 16,15</span>
+  </div>
+</div>
+
+<!-- EXO 5 -->
+<div class="exo">
+  <div class="enonce">
+    <strong>Exemple 2 :</strong> Calculer 5,6 + 0,85 + 12
+  </div>
+  <button class="btn-corr" onclick="toggleCorr(this)">
+    <span class="arrow">▶</span> Afficher la correction
+  </button>
+  <div class="correction">
+    <span class="etape">J'aligne les virgules (12 devient 12,00) :</span>
+    <div class="pose">
+      <span class="ligne">&nbsp;&nbsp;&nbsp;5 , 6 0</span>
+      <span class="ligne">&nbsp;&nbsp;&nbsp;0 , 8 5</span>
+      <span class="ligne">+ 1 2 , 0 0</span>
+      <span class="barre"></span>
+      <span class="ligne">&nbsp;&nbsp;1 8 , 4 5</span>
+    </div>
+    <span class="resultat">5,6 + 0,85 + 12 = 18,45</span>
+  </div>
+</div>
+
+<hr>
+
+
+</div>
+
+<script>
+function toggleCorr(btn) {
+  var corr = btn.nextElementSibling;
+  if (corr.classList.contains('show')) {
+    corr.classList.remove('show');
+    btn.classList.remove('open');
+    btn.innerHTML = '<span class="arrow">▶</span> Afficher la correction';
+  } else {
+    corr.classList.add('show');
+    btn.classList.add('open');
+    btn.innerHTML = '<span class="arrow">▶</span> Masquer la correction';
+  }
+}
+</script>
+
+</body>
+</html>
