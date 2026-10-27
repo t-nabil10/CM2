@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📏 Tableau de conversion des Longueurs</title>
+<style>
+  :root {
+    --primary: #2980b9;      /* Bleu */
+    --primary-light: #eaf2f8;
+    --accent: #f39c12;       /* Orange */
+    --success: #27ae60;      /* Vert */
+    --success-light: #eafaf1;
+    --danger: #e74c3c;       /* Rouge pour les avertissements */
+    --text: #2c3e50;
+  }
+  
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: var(--text);
+    margin: 0;
+    padding: 15px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 850px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 3px dashed #a5d6a7; /* Bordure verte pointillée style MÉMO */
+  }
+
+  /* --- EN-TÊTE MÉMO --- */
+  .memo-header {
+    background: #fff;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .memo-box {
+    font-family: "Arial Black", Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .box-m1 { background: #e91e63; transform: rotate(-5deg); }
+  .box-e  { background: #00bcd4; transform: rotate(2deg); }
+  .box-m2 { background: #ffeb3b; color: #333; transform: rotate(-2deg); }
+  .box-o  { background: #ff9800; transform: rotate(5deg); }
+
+  /* --- CONTENU --- */
+  .content {
+    padding: 20px 30px 30px 30px;
+  }
+
+  /* Règles du MÉMO */
+  .memo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
+
+  .memo-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+  }
+
+  .memo-list li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--success);
+    font-size: 1.2rem;
+  }
+
+  .strong-word { font-weight: bold; color: var(--text); }
+  
+  .unit {
+    color: var(--primary);
+    font-weight: bold;
+    background: var(--primary-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #b3d4ec;
+  }
+
+  .number { color: #d35400; font-weight: bold; font-size: 1.1em; }
+
+  /* --- TABLEAUX DE CONVERSION --- */
+  h3 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 8px;
+    margin-top: 35px;
+    font-size: 1.2rem;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 15px 0 25px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 500px;
+    background: #fff;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  th {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Mise en valeur de l'unité principale (m, g, m²) */
+  .main-unit {
+    background: #fff3e0;
+    font-weight: bold;
+    color: #e65100;
+    border: 2px solid var(--accent);
+  }
+
+  th.main-unit {
+    background: #e65100;
+    color: #fff;
+    border: 2px solid #b34700;
+  }
+
+  tr:nth-child(even) { background: #f8f9fa; }
+  tr:nth-child(even) .main-unit { background: #ffe0b2; }
+
+  /* --- SPECIFIQUE AIRES (2 colonnes par unité) --- */
+  th.unit-border, td.unit-border {
+    border-right: 3px solid var(--primary); /* Séparation épaisse */
+  }
+  
+  /* --- ENCADRÉS D'EXEMPLES --- */
+  .exemple-box {
+    background: var(--success-light);
+    border-left: 5px solid var(--success);
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+  }
+  .exemple-box strong { color: var(--success); }
+
+  .exemple-box.danger {
+    background: #fdedec;
+    border-left-color: var(--danger);
+  }
+  .exemple-box.danger strong { color: var(--danger); }
+
+  @media (max-width: 480px) {
+    .content { padding: 15px; }
+    .memo-box { width: 35px; height: 35px; font-size: 1.4rem; }
+    .memo-list li { font-size: 0.95rem; }
+  }
+</style>
+
+</head>
+<body >
+<div class="container">
+<div class="memo-header">
+    <div class="memo-box box-m1">M</div>
+    <div class="memo-box box-e">É</div>
+    <div class="memo-box box-m2">M</div>
+    <div class="memo-box box-o">O</div>
+  </div>
+<div class="content">
+    
+    <!-- ========================================== -->
+    <!-- PARTIE 1 : LES RÈGLES (MÉMO) -->
+    <!-- ========================================== -->
+    <ul class="memo-list">
+      <li>
+        Les <span class="strong-word">masses</span> sont mesurées à l'aide de l'unité <span class="strong-word">gramme</span> <span class="unit">(g)</span>, de ses multiples et de ses sous-multiples.
+      </li>
+      <li>
+        Le <span class="strong-word">kilogramme</span> <span class="unit">(kg)</span> est égal à <span class="number">1 000</span> grammes.
+      </li>
+      <li>
+        Les <span class="strong-word">longueurs</span> sont mesurées à l'aide de l'unité <span class="strong-word">mètre</span> <span class="unit">(m)</span>, de ses multiples et ses sous-multiples.
+      </li>
+      <li>
+        Le <span class="strong-word">kilomètre</span> <span class="unit">(km)</span> est égal à <span class="number">1 000</span> mètres. L'<span class="strong-word">hectomètre</span> <span class="unit">(hm)</span> est égal à <span class="number">100</span> mètres.
+      </li>
+      <li>
+        L'<span class="strong-word">aire</span> d'une surface (ou superficie) est un nombre qui exprime la mesure de cette surface. L'unité de mesure est le <span class="strong-word">mètre carré</span> (que l'on note <span class="unit">m²</span>).
+      </li>
+    </ul>
+
+    <!-- ========================================== -->
+    <!-- PARTIE 2 : TABLEAU DES LONGUEURS -->
+    <!-- ========================================== -->
+    <h3>📏 Tableau de conversion des Longueurs</h3>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">
+      <em>Règle : Chaque unité vaut 10 fois l'unité qui la suit.</em>
+    </p>
+    
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>km</th>
+            <th>hm</th>
+            <th>dam</th>
+            <th class="main-unit">m</th>
+            <th>dm</th>
+            <th>cm</th>
+            <th>mm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>kilomètre</td>
+            <td>hectomètre</td>
+            <td>décamètre</td>
+            <td class="main-unit">mètre</td>
+            <td>décimètre</td>
+            <td>centimètre</td>
+            <td>millimètre</td>
+          </tr>
+          <tr>
+            <td>1 000 m</td>
+            <td>100 m</td>
+            <td>10 m</td>
+            <td class="main-unit">1 m</td>
+            <td>0,1 m</td>
+            <td>0,01 m</td>
+            <td>0,001 m</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exemple-box">
+      <strong>Exemple :</strong> Pour convertir <strong>3 km en m</strong>, je descends de 3 colonnes (× 10 × 10 × 10 = × 1 000).<br>
+      Donc : 3 km = 3 × 1 000 = <strong>3 000 m</strong>.
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PARTIE 3 : TABLEAU DES MASSES -->
+    <!-- ========================================== -->
+    <h3>⚖️ Tableau de conversion des Masses</h3>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">
+      <em>Règle : Chaque unité vaut 10 fois l'unité qui la suit.</em>
+    </p>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>t</th>
+            <th>q</th>
+            <th>kg</th>
+            <th>hg</th>
+            <th>dag</th>
+            <th class="main-unit">g</th>
+            <th>dg</th>
+            <th>cg</th>
+            <th>mg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>tonne</td>
+            <td>quintal</td>
+            <td>kilogramme</td>
+            <td>hectog.</td>
+            <td>décag.</td>
+            <td class="main-unit">gramme</td>
+            <td>décig.</td>
+            <td>centig.</td>
+            <td>millig.</td>
+          </tr>
+          <tr>
+            <td>1 000 kg</td>
+            <td>100 kg</td>
+            <td>1 kg</td>
+            <td>100 g</td>
+            <td>10 g</td>
+            <td class="main-unit">1 g</td>
+            <td>0,1 g</td>
+            <td>0,01 g</td>
+            <td>0,001 g</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exemple-box">
+      <strong>Exemple :</strong> Pour convertir <strong>2 kg en g</strong>, je descends de 3 colonnes (× 1 000).<br>
+      Donc : 2 kg = 2 × 1 000 = <strong>2 000 g</strong>.
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PARTIE 4 : TABLEAU DES AIRES (2 COLONNES) -->
+    <!-- ========================================== -->
+    <h3>🔲 Tableau de conversion des Aires</h3>
+    <p style="font-size: 0.95rem; color: var(--danger); margin-bottom: 5px; font-weight: bold;">
+      <em>⚠️ Attention : Pour les aires, chaque unité occupe 2 colonnes (on multiplie ou divise par 100) !</em>
+    </p>
+
+    <div class="table-responsive">
+      <table style="min-width: 650px;">
+        <thead>
+          <tr>
+            <th colspan="2" class="unit-border">km²</th>
+            <th colspan="2" class="unit-border">hm²</th>
+            <th colspan="2" class="unit-border">dam²</th>
+            <th colspan="2" class="main-unit unit-border">m²</th>
+            <th colspan="2" class="unit-border">dm²</th>
+            <th colspan="2" class="unit-border">cm²</th>
+            <th colspan="2">mm²</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="height: 50px;">
+            <!-- km² -->
+            <td class="unit-border"></td><td class="unit-border"></td>
+            <!-- hm² -->
+            <td class="unit-border"></td><td class="unit-border"></td>
+            <!-- dam² -->
+            <td class="unit-border"></td><td class="unit-border"></td>
+            <!-- m² -->
+            <td class="main-unit unit-border"></td><td class="main-unit unit-border"></td>
+            <!-- dm² -->
+            <td class="unit-border"></td><td class="unit-border"></td>
+            <!-- cm² -->
+            <td class="unit-border"></td><td class="unit-border"></td>
+            <!-- mm² -->
+            <td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exemple-box danger">
+      <strong>Exemple 1 :</strong> Convertir <strong>3,5 m² en dm²</strong>.<br>
+      Je place le 3 dans la colonne des unités de m², le 5 dans la colonne des dixièmes de m². Puis je complète avec un 0 dans les dm².<br>
+      Résultat : 3,5 m² = <strong>350 dm²</strong>.
+      <br><br>
+      <strong>Exemple 2 :</strong> Convertir <strong>2 m² en cm²</strong>.<br>
+      Je descends de 2 unités (m² → dm² → cm²), donc je multiplie par 100, puis encore par 100.<br>
+      Résultat : 2 × 100 × 100 = <strong>20 000 cm²</strong>.
+    </div>
+
+  </div>
+<h3>📏 Tableau de conversion des Longueurs</h3>
+<p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">
+      <em>Règle : Chaque unité vaut 10 fois l'unité qui la suit.</em>
+    </p>
+<div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>km</th>
+            <th>hm</th>
+            <th>dam</th>
+            <th class="main-unit">m</th>
+            <th>dm</th>
+            <th>cm</th>
+            <th>mm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>kilomètre</td>
+            <td>hectomètre</td>
+            <td>décamètre</td>
+            <td class="main-unit">mètre</td>
+            <td>décimètre</td>
+            <td>centimètre</td>
+            <td>millimètre</td>
+          </tr>
+          <tr>
+            <td>1 000 m</td>
+            <td>100 m</td>
+            <td>10 m</td>
+            <td class="main-unit">1 m</td>
+            <td>0,1 m</td>
+            <td>0,01 m</td>
+            <td>0,001 m</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<div class="exemple-box">
+      <strong>Exemple :</strong> Pour convertir <strong>3 km en m</strong>, je descends de 3 colonnes (× 10 × 10 × 10 = × 1 000).<br>
+      Donc : 3 km = 3 × 1 000 = <strong>3 000 m</strong>.
+    </div>
+
+<!-- Bouton en bas de page -->
+<div class="open-link-container">
+    <button class="open-link-btn" onclick="openHtmlPage()">
+        Si la page ne s'affiche pas correctement : Cliquez ici
+    </button>
+</div>
+
+<style>
+  .open-link-container {
+    display: flex; justify-content: center; align-items: center;
+    margin: 30px auto 20px; padding: 0 12px; width: 100%;
+    box-sizing: border-box;
+  }
+  .open-link-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px; background: linear-gradient(135deg, #1a5276, #2874a6);
+    color: #ffffff; border: none; padding: 16px 28px;
+    font-size: 1rem; font-weight: 700; border-radius: 12px;
+    cursor: pointer; box-shadow: 0 6px 18px rgba(26, 82, 118, 0.35);
+    font-family: inherit; max-width: 100%; text-align: center;
+    line-height: 1.35;
+  }
+  .open-link-btn:hover {
+    background: linear-gradient(135deg, #154360, #1f5b85);
+  }
+  @media (max-width: 480px) {
+    .open-link-btn { padding: 14px 20px; font-size: 0.9rem; width: 100%; }
+  }
+</style>
+
+<script>
+  function openHtmlPage() {
+    window.open(window.location.href, '_blank');
+  }
+</script>
+
+</div>
+
+</body>
+</html>
