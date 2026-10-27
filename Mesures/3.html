@@ -3,242 +3,151 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔲 Tableau de conversion des Aires</title>
+<title>Tableau de conversion des Masses</title>
 <style>
-  :root {
-    --primary: #2980b9;      /* Bleu */
-    --primary-light: #eaf2f8;
-    --accent: #f39c12;       /* Orange */
-    --success: #27ae60;      /* Vert */
-    --success-light: #eafaf1;
-    --danger: #e74c3c;       /* Rouge pour les avertissements */
-    --text: #2c3e50;
-  }
-  
-  * { box-sizing: border-box; }
-
   body {
     font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: var(--text);
-    margin: 0;
-    padding: 15px;
     line-height: 1.6;
-  }
-
-  .container {
-    max-width: 850px;
+    color: #222;
+    max-width: 900px;
     margin: 20px auto;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    overflow: hidden;
-    border: 3px dashed #a5d6a7; /* Bordure verte pointillée style MÉMO */
+    padding: 20px;
+    background: #fafafa;
   }
-
-  /* --- EN-TÊTE MÉMO --- */
-  .memo-header {
-    background: #fff;
-    padding: 20px 20px 0 20px;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-  }
-
-  .memo-box {
-    font-family: "Arial Black", Arial, sans-serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #fff;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-  }
-
-  .box-m1 { background: #e91e63; transform: rotate(-5deg); }
-  .box-e  { background: #00bcd4; transform: rotate(2deg); }
-  .box-m2 { background: #ffeb3b; color: #333; transform: rotate(-2deg); }
-  .box-o  { background: #ff9800; transform: rotate(5deg); }
-
-  /* --- CONTENU --- */
-  .content {
-    padding: 20px 30px 30px 30px;
-  }
-
-  /* Règles du MÉMO */
-  .memo-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-  }
-
-  .memo-list li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 15px;
-    font-size: 1.05rem;
-  }
-
-  .memo-list li::before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    top: 2px;
-    color: var(--success);
-    font-size: 1.2rem;
-  }
-
-  .strong-word { font-weight: bold; color: var(--text); }
-  
-  .unit {
-    color: var(--primary);
-    font-weight: bold;
-    background: var(--primary-light);
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #b3d4ec;
-  }
-
-  .number { color: #d35400; font-weight: bold; font-size: 1.1em; }
-
-  /* --- TABLEAUX DE CONVERSION --- */
-  h3 {
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary-light);
+  h1 {
+    color: #1a5276;
+    border-bottom: 3px solid #1a5276;
     padding-bottom: 8px;
-    margin-top: 35px;
-    font-size: 1.2rem;
+    text-align: center;
   }
-
-  .table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 15px 0 25px 0;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  h2 {
+    color: #1a5276;
+    background: #eaf2f8;
+    padding: 8px 12px;
+    border-left: 5px solid #1a5276;
+    border-radius: 4px;
+    margin-top: 30px;
   }
-
+  h3 {
+    color: #2874a6;
+    margin-top: 20px;
+  }
+  hr {
+    border: none;
+    border-top: 2px dashed #bbb;
+    margin: 30px 0;
+  }
   table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 500px;
+    margin: 15px 0;
     background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
-
   th, td {
-    border: 1px solid #ddd;
-    padding: 12px 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: center;
-    font-size: 0.95rem;
   }
-
   th {
-    background: var(--primary);
+    background: #1a5276;
     color: #fff;
-    font-weight: 600;
   }
-
-  /* Mise en valeur de l'unité principale (m, g, m²) */
+  tr:nth-child(even) {
+    background: #f4f8fb;
+  }
+  /* Style spécifique pour les unités principales (m, g, m²) */
   .main-unit {
-    background: #fff3e0;
+    background: #fff8e1;
     font-weight: bold;
-    color: #e65100;
-    border: 2px solid var(--accent);
+    color: #d35400;
+    border: 2px solid #f39c12;
   }
-
   th.main-unit {
-    background: #e65100;
+    background: #f39c12;
     color: #fff;
-    border: 2px solid #b34700;
   }
-
-  tr:nth-child(even) { background: #f8f9fa; }
-  tr:nth-child(even) .main-unit { background: #ffe0b2; }
-
-  /* --- SPECIFIQUE AIRES (2 colonnes par unité) --- */
-  th.unit-border, td.unit-border {
-    border-right: 3px solid var(--primary); /* Séparation épaisse */
+  /* Style pour séparer les colonnes des aires */
+  .unit-border {
+    border-right: 3px solid #1a5276;
   }
   
-  /* --- ENCADRÉS D'EXEMPLES --- */
-  .exemple-box {
-    background: var(--success-light);
-    border-left: 5px solid var(--success);
-    padding: 15px;
-    border-radius: 6px;
+  .formule {
+    background: #fff8e1;
+    border-left: 4px solid #f39c12;
+    padding: 10px 15px;
+    margin: 12px 0;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 1.15em;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .encadre {
+    background: #e8f8f5;
+    border: 2px solid #16a085;
+    border-radius: 8px;
+    padding: 12px 18px;
     margin: 15px 0;
-    font-size: 0.95rem;
   }
-  .exemple-box strong { color: var(--success); }
-
-  .exemple-box.danger {
+  .encadre.danger {
     background: #fdedec;
-    border-left-color: var(--danger);
+    border-color: #e74c3c;
   }
-  .exemple-box.danger strong { color: var(--danger); }
-
-  @media (max-width: 480px) {
-    .content { padding: 15px; }
-    .memo-box { width: 35px; height: 35px; font-size: 1.4rem; }
-    .memo-list li { font-size: 0.95rem; }
+  .conseil {
+    background: #fef9e7;
+    border-left: 5px solid #f1c40f;
+    padding: 12px 18px;
+    margin: 20px 0;
+    border-radius: 4px;
+    font-style: italic;
+  }
+  ul, ol {
+    padding-left: 25px;
+  }
+  li {
+    margin: 6px 0;
+  }
+  /* Conteneur pour rendre les tableaux responsives sur téléphone */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  code {
+    background: #eef;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: Consolas, monospace;
   }
 </style>
 
 </head>
 <body >
-<div class="container">
 
-<h3>🔲 Tableau de conversion des Aires</h3>
-<p style="font-size: 0.95rem; color: var(--danger); margin-bottom: 5px; font-weight: bold;">
-      <em>⚠️ Attention : Pour les aires, chaque unité occupe 2 colonnes (on multiplie ou divise par 100) !</em>
-    </p>
+
+<h2>3. Tableau de conversion des Masses</h2>
+<p>Règle : Chaque unité vaut <strong>10 fois</strong> l'unité qui la suit.</p>
 <div class="table-responsive">
-      <table style="min-width: 650px;">
-        <thead>
-          <tr>
-            <th colspan="2" class="unit-border">km²</th>
-            <th colspan="2" class="unit-border">hm²</th>
-            <th colspan="2" class="unit-border">dam²</th>
-            <th colspan="2" class="main-unit unit-border">m²</th>
-            <th colspan="2" class="unit-border">dm²</th>
-            <th colspan="2" class="unit-border">cm²</th>
-            <th colspan="2">mm²</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="height: 50px;">
-            <!-- km² -->
-            <td class="unit-border"></td><td class="unit-border"></td>
-            <!-- hm² -->
-            <td class="unit-border"></td><td class="unit-border"></td>
-            <!-- dam² -->
-            <td class="unit-border"></td><td class="unit-border"></td>
-            <!-- m² -->
-            <td class="main-unit unit-border"></td><td class="main-unit unit-border"></td>
-            <!-- dm² -->
-            <td class="unit-border"></td><td class="unit-border"></td>
-            <!-- cm² -->
-            <td class="unit-border"></td><td class="unit-border"></td>
-            <!-- mm² -->
-            <td></td><td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-<div class="exemple-box danger">
-      <strong>Exemple 1 :</strong> Convertir <strong>3,5 m² en dm²</strong>.<br>
-      Je place le 3 dans la colonne des unités de m², le 5 dans la colonne des dixièmes de m². Puis je complète avec un 0 dans les dm².<br>
-      Résultat : 3,5 m² = <strong>350 dm²</strong>.
-      <br><br>
-      <strong>Exemple 2 :</strong> Convertir <strong>2 m² en cm²</strong>.<br>
-      Je descends de 2 unités (m² → dm² → cm²), donc je multiplie par 100, puis encore par 100.<br>
-      Résultat : 2 × 100 × 100 = <strong>20 000 cm²</strong>.
-    </div>
+  <table>
+    <thead>
+      <tr>
+        <th>t</th><th>q</th><th>kg</th><th>hg</th><th>dag</th><th class="main-unit">g</th><th>dg</th><th>cg</th><th>mg</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>tonne</td><td>quintal</td><td>kilogramme</td><td>hectog.</td><td>décag.</td><td class="main-unit">gramme</td><td>décig.</td><td>centig.</td><td>millig.</td>
+      </tr>
+      <tr>
+        <td>1 000 kg</td><td>100 kg</td><td>1 kg</td><td>100 g</td><td>10 g</td><td class="main-unit">1 g</td><td>0,1 g</td><td>0,01 g</td><td>0,001 g</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="encadre">
+<strong>Exemple :</strong> Pour convertir <strong>2 kg en g</strong>, je descends de 3 colonnes (× 1 000).<br>
+Donc : 2 kg = 2 × 1 000 = <strong>2 000 g</strong>.
+</div>
+<hr>
 
 <!-- Bouton en bas de page -->
 <div class="open-link-container">
@@ -276,7 +185,7 @@
   }
 </script>
 
-</div>
+
 
 </body>
 </html>
