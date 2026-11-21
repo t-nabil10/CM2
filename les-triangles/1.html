@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reconnaître les triangles</title>
+<style>
+.tc-cours{--navy:#12305a;--teal:#1596a6;--teal-l:#e3f5f7;--gold:#f59e0b;--gold-l:#fff4d9;--ink:#1d2733;--bg:#f5f8fb;--line:#d5dfea;
+  box-sizing:border-box;max-width:860px;margin:0 auto;padding:16px;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1.05rem;line-height:1.6}
+.tc-cours *,.tc-cours *::before,.tc-cours *::after{box-sizing:border-box}
+.tc-cours header.tc-top{background:var(--navy);color:#fff;border-radius:14px;padding:22px 20px;border-bottom:5px solid var(--gold)}
+.tc-cours .tc-top h1{margin:0;font-size:1.9rem;line-height:1.2;color:#fff}
+.tc-cours .tc-top p{margin:6px 0 0;color:#cfe3f5;font-size:1rem}
+.tc-cours .tc-seance{margin:30px 0 14px;padding:10px 16px;background:var(--teal);color:#fff;border-radius:10px;font-size:1.25rem;font-weight:700}
+.tc-cours h2{margin:24px 0 8px;font-size:1.3rem;color:var(--navy);border-bottom:2px solid var(--teal);padding-bottom:4px}
+.tc-cours h3{margin:16px 0 6px;font-size:1.1rem;color:var(--teal)}
+.tc-cours p{margin:8px 0}
+.tc-cours ul,.tc-cours ol{margin:8px 0;padding-left:1.4em}
+.tc-cours li{margin:4px 0}
+.tc-cours .tc-def,.tc-cours .tc-regle{border-radius:10px;padding:12px 16px;margin:12px 0}
+.tc-cours .tc-def{background:var(--teal-l);border-left:6px solid var(--teal)}
+.tc-cours .tc-regle{background:var(--gold-l);border-left:6px solid var(--gold)}
+.tc-cours .tc-def b.tc-t,.tc-cours .tc-regle b.tc-t{display:block;color:var(--navy);margin-bottom:2px}
+.tc-cours .tc-formule{text-align:center;font-size:1.25rem;font-weight:700;color:var(--navy);margin:8px 0}
+.tc-cours .tc-fig{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.tc-cours .tc-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.tc-cours .tc-card svg{width:100%;max-width:200px;height:auto}
+.tc-cours .tc-card strong{display:block;color:var(--navy)}
+.tc-cours .tc-card span{font-size:.95rem}
+.tc-cours .tc-ex{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+.tc-cours .tc-ex>b:first-child{color:var(--navy)}
+.tc-cours .tc-btn{display:inline-block;min-height:44px;margin:6px 0;padding:8px 18px;border:2px solid var(--navy);border-radius:8px;background:#fff;color:var(--navy);font:inherit;font-weight:600;cursor:pointer}
+.tc-cours .tc-btn:hover{background:var(--navy);color:#fff}
+.tc-cours .tc-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tc-cours .tc-corr{background:#f0fbf4;border-left:5px solid #2e9d5b;border-radius:8px;padding:8px 14px;margin:6px 0}
+.tc-cours .tc-corr[hidden]{display:none}
+.tc-cours .tc-schema{text-align:center;margin:12px 0}
+.tc-cours .tc-schema svg{width:100%;max-width:300px;height:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+.tc-cours .tc-schema figcaption{font-size:.95rem;color:#4a5a6a}
+.tc-cours .tc-wrap{overflow-x:auto}
+.tc-cours table{width:100%;border-collapse:collapse;background:#fff}
+.tc-cours th,.tc-cours td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.tc-cours th{background:var(--navy);color:#fff}
+.tc-cours footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);text-align:center;font-size:.9rem;color:#5b6b7b}
+@media (max-width:520px){
+  .tc-cours{padding:10px;font-size:1rem}
+  .tc-cours .tc-top h1{font-size:1.5rem}
+  .tc-cours .tc-fig{grid-template-columns:1fr}
+  .tc-cours .tc-btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="tc-cours">
+
+<header class="tc-top">
+  <h1>Les triangles</h1>
+  <p>Mathématiques – CM2 – Géométrie</p>
+</header>
+
+<!-- ============ SÉANCE 1 ============ -->
+<div class="tc-seance">Séance 1 : Reconnaître les triangles</div>
+
+<h2>1. Le triangle</h2>
+<div class="tc-def">
+  <b class="tc-t">Définition</b>
+  Un <b>triangle</b> est un polygone qui a <b>3 côtés</b>, <b>3 sommets</b> et <b>3 angles</b>.
+</div>
+
+<figure class="tc-schema">
+  <svg viewBox="0 0 220 140" role="img" aria-label="Triangle ABC">
+    <polygon points="30,115 190,115 120,25" fill="#e3f5f7" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+    <g font-size="16" font-weight="700" fill="#12305a" font-family="Arial,sans-serif">
+      <text x="14" y="132">A</text><text x="194" y="132">B</text><text x="116" y="18">C</text>
+    </g>
+  </svg>
+  <figcaption>Triangle ABC</figcaption>
+</figure>
+
+<ul>
+  <li>Les sommets : A, B et C.</li>
+  <li>Les côtés : [AB], [BC] et [AC].</li>
+  <li>Les angles : ABC, BCA et CAB.</li>
+</ul>
+
+<h2>2. Les triangles particuliers</h2>
+
+<div class="tc-fig">
+  <div class="tc-card">
+    <svg viewBox="0 0 160 110" role="img" aria-label="Triangle quelconque">
+      <polygon points="20,95 140,95 100,20" fill="#e3f5f7" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+    </svg>
+    <strong>Triangle quelconque</strong>
+    <span>Ses 3 côtés ont des longueurs différentes.</span>
+  </div>
+  <div class="tc-card">
+    <svg viewBox="0 0 160 110" role="img" aria-label="Triangle isocèle">
+      <polygon points="20,95 140,95 80,20" fill="#e3f5f7" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+      <g stroke="#f59e0b" stroke-width="3"><line x1="46" y1="52" x2="54" y2="58"></line><line x1="106" y1="58" x2="114" y2="52"></line></g>
+    </svg>
+    <strong>Triangle isocèle</strong>
+    <span>Il a 2 côtés de même longueur.</span>
+  </div>
+  <div class="tc-card">
+    <svg viewBox="0 0 160 110" role="img" aria-label="Triangle équilatéral">
+      <polygon points="30,95 130,95 80,8.4" fill="#e3f5f7" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+      <g stroke="#f59e0b" stroke-width="3"><line x1="50.7" y1="49.2" x2="59.3" y2="54.2"></line><line x1="100.7" y1="54.2" x2="109.3" y2="49.2"></line><line x1="80" y1="90" x2="80" y2="100"></line></g>
+    </svg>
+    <strong>Triangle équilatéral</strong>
+    <span>Il a 3 côtés de même longueur.</span>
+  </div>
+  <div class="tc-card">
+    <svg viewBox="0 0 160 110" role="img" aria-label="Triangle rectangle">
+      <polygon points="30,95 130,95 30,20" fill="#e3f5f7" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+      <path d="M30 83 H42 V95" fill="none" stroke="#f59e0b" stroke-width="3"></path>
+    </svg>
+    <strong>Triangle rectangle</strong>
+    <span>Il a un angle droit.</span>
+  </div>
+</div>
+
+<div class="tc-regle">
+  <b class="tc-t">À retenir</b>
+  Les petits traits identiques (||) codent des côtés de même longueur. Le carré dans un angle code un angle droit.
+</div>
+
+<div class="tc-def">
+  <b class="tc-t">Vocabulaire</b>
+  Dans un triangle isocèle ABC avec AB = AC, le sommet A s’appelle le <b>sommet principal</b>. On dit : « ABC est isocèle en A ».
+</div>
+
+<h2>3. Exemples corrigés</h2>
+
+<div class="tc-ex">
+  <b>Exemple 1.</b> Donne le nom du triangle ABC dans chaque cas.
+  <ol type="a">
+    <li>AB = 5 cm ; BC = 5 cm ; AC = 5 cm</li>
+    <li>AB = 4 cm ; AC = 4 cm ; BC = 6 cm</li>
+    <li>AB = 3 cm ; BC = 4 cm ; AC = 6 cm</li>
+  </ol>
+  <button class="tc-btn" type="button" data-target="c1" aria-expanded="false" aria-controls="c1">Afficher la correction</button>
+  <div class="tc-corr" id="c1" hidden="">
+    <ol type="a">
+      <li>Les 3 côtés sont égaux : ABC est <b>équilatéral</b>.</li>
+      <li>AB = AC : ABC est <b>isocèle en A</b>.</li>
+      <li>Les 3 côtés sont différents : ABC est <b>quelconque</b>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="tc-ex">
+  <b>Exemple 2.</b> Le triangle DEF a un angle droit en E. Quel est son nom ? Quels côtés forment l’angle droit ?
+  <br>
+  <button class="tc-btn" type="button" data-target="c2" aria-expanded="false" aria-controls="c2">Afficher la correction</button>
+  <div class="tc-corr" id="c2" hidden="">
+    DEF est un <b>triangle rectangle en E</b>.<br>
+    L’angle droit est formé par les côtés [ED] et [EF].
+  </div>
+</div>
+
+<div class="tc-ex">
+  <b>Exemple 3.</b> ABC est isocèle en A. On a AB = 7 cm et BC = 4 cm. Quelle est la longueur de [AC] ?
+  <br>
+  <button class="tc-btn" type="button" data-target="c3" aria-expanded="false" aria-controls="c3">Afficher la correction</button>
+  <div class="tc-corr" id="c3" hidden="">
+    ABC est isocèle en A, donc AB = AC.<br>
+    Donc <b>AC = 7 cm</b>.
+  </div>
+</div>
+
+<!-- ============ SÉANCE 2 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var btns=document.querySelectorAll('.tc-cours .tc-btn');
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function(){
+      var box=document.getElementById(this.getAttribute('data-target'));
+      var open=box.hasAttribute('hidden');
+      if(open){box.removeAttribute('hidden');}else{box.setAttribute('hidden','');}
+      this.setAttribute('aria-expanded',open?'true':'false');
+      this.textContent=open?'Masquer la correction':'Afficher la correction';
+    });
+  }
+})();
+</script>
+</body>
+</html>

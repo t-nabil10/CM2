@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Construction</title>
+<style>
+.tc-cours{--navy:#12305a;--teal:#1596a6;--teal-l:#e3f5f7;--gold:#f59e0b;--gold-l:#fff4d9;--ink:#1d2733;--bg:#f5f8fb;--line:#d5dfea;
+  box-sizing:border-box;max-width:860px;margin:0 auto;padding:16px;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1.05rem;line-height:1.6}
+.tc-cours *,.tc-cours *::before,.tc-cours *::after{box-sizing:border-box}
+.tc-cours header.tc-top{background:var(--navy);color:#fff;border-radius:14px;padding:22px 20px;border-bottom:5px solid var(--gold)}
+.tc-cours .tc-top h1{margin:0;font-size:1.9rem;line-height:1.2;color:#fff}
+.tc-cours .tc-top p{margin:6px 0 0;color:#cfe3f5;font-size:1rem}
+.tc-cours .tc-seance{margin:30px 0 14px;padding:10px 16px;background:var(--teal);color:#fff;border-radius:10px;font-size:1.25rem;font-weight:700}
+.tc-cours h2{margin:24px 0 8px;font-size:1.3rem;color:var(--navy);border-bottom:2px solid var(--teal);padding-bottom:4px}
+.tc-cours h3{margin:16px 0 6px;font-size:1.1rem;color:var(--teal)}
+.tc-cours p{margin:8px 0}
+.tc-cours ul,.tc-cours ol{margin:8px 0;padding-left:1.4em}
+.tc-cours li{margin:4px 0}
+.tc-cours .tc-def,.tc-cours .tc-regle{border-radius:10px;padding:12px 16px;margin:12px 0}
+.tc-cours .tc-def{background:var(--teal-l);border-left:6px solid var(--teal)}
+.tc-cours .tc-regle{background:var(--gold-l);border-left:6px solid var(--gold)}
+.tc-cours .tc-def b.tc-t,.tc-cours .tc-regle b.tc-t{display:block;color:var(--navy);margin-bottom:2px}
+.tc-cours .tc-formule{text-align:center;font-size:1.25rem;font-weight:700;color:var(--navy);margin:8px 0}
+.tc-cours .tc-fig{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.tc-cours .tc-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.tc-cours .tc-card svg{width:100%;max-width:200px;height:auto}
+.tc-cours .tc-card strong{display:block;color:var(--navy)}
+.tc-cours .tc-card span{font-size:.95rem}
+.tc-cours .tc-ex{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+.tc-cours .tc-ex>b:first-child{color:var(--navy)}
+.tc-cours .tc-btn{display:inline-block;min-height:44px;margin:6px 0;padding:8px 18px;border:2px solid var(--navy);border-radius:8px;background:#fff;color:var(--navy);font:inherit;font-weight:600;cursor:pointer}
+.tc-cours .tc-btn:hover{background:var(--navy);color:#fff}
+.tc-cours .tc-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tc-cours .tc-corr{background:#f0fbf4;border-left:5px solid #2e9d5b;border-radius:8px;padding:8px 14px;margin:6px 0}
+.tc-cours .tc-corr[hidden]{display:none}
+.tc-cours .tc-schema{text-align:center;margin:12px 0}
+.tc-cours .tc-schema svg{width:100%;max-width:300px;height:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+.tc-cours .tc-schema figcaption{font-size:.95rem;color:#4a5a6a}
+.tc-cours .tc-wrap{overflow-x:auto}
+.tc-cours table{width:100%;border-collapse:collapse;background:#fff}
+.tc-cours th,.tc-cours td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.tc-cours th{background:var(--navy);color:#fff}
+.tc-cours footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);text-align:center;font-size:.9rem;color:#5b6b7b}
+@media (max-width:520px){
+  .tc-cours{padding:10px;font-size:1rem}
+  .tc-cours .tc-top h1{font-size:1.5rem}
+  .tc-cours .tc-fig{grid-template-columns:1fr}
+  .tc-cours .tc-btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="tc-cours"><div class="tc-seance">Séance 2 : Construction</div>
+
+<h2>1. Construire un triangle connaissant ses 3 côtés</h2>
+<p><b>Matériel :</b> règle graduée, compas, crayon bien taillé.</p>
+<p><b>Exemple :</b> construire ABC avec AB = 6 cm, AC = 4 cm et BC = 5 cm.</p>
+
+<ol>
+  <li>Tracer le segment [AB] de 6 cm.</li>
+  <li>Avec le compas, tracer un arc de cercle de centre A et de rayon 4 cm.</li>
+  <li>Tracer un arc de cercle de centre B et de rayon 5 cm.</li>
+  <li>Les deux arcs se coupent en C.</li>
+  <li>Relier A à C et B à C.</li>
+</ol>
+
+<figure class="tc-schema">
+  <svg viewBox="0 0 260 190" role="img" aria-label="Construction du triangle ABC à la règle et au compas">
+    <path d="M124.9 75.2 A120 120 0 0 0 86.9 49.5" fill="none" stroke="#1596a6" stroke-width="2.5"></path>
+    <path d="M127.6 41.8 A150 150 0 0 0 90.1 85" fill="none" stroke="#f59e0b" stroke-width="2.5"></path>
+    <polygon points="40,160 220,160 107.5,60.8" fill="rgba(227,245,247,.6)" stroke="#12305a" stroke-width="3" stroke-linejoin="round"></polygon>
+    <g font-size="16" font-weight="700" fill="#12305a" font-family="Arial,sans-serif">
+      <text x="22" y="178">A</text><text x="224" y="178">B</text><text x="112" y="56">C</text>
+    </g>
+    <g font-size="13" fill="#4a5a6a" font-family="Arial,sans-serif">
+      <text x="118" y="178">6 cm</text><text x="52" y="106">4 cm</text><text x="176" y="100">5 cm</text>
+    </g>
+  </svg>
+  <figcaption>Arc bleu : rayon 4 cm (centre A). Arc orange : rayon 5 cm (centre B).</figcaption>
+</figure>
+
+<div class="tc-regle">
+  <b class="tc-t">Condition d’existence</b>
+  Pour pouvoir construire un triangle, le plus grand côté doit être <b>plus petit</b> que la somme des deux autres côtés.
+</div>
+
+<div class="tc-ex">
+  <b>Exemple 5.</b> Peut-on construire un triangle dont les côtés mesurent :
+  <ol type="a">
+    <li>3 cm ; 4 cm ; 8 cm ?</li>
+    <li>4 cm ; 5 cm ; 6 cm ?</li>
+  </ol>
+  <button class="tc-btn" type="button" data-target="c5" aria-expanded="false" aria-controls="c5">Afficher la correction</button>
+  <div class="tc-corr" id="c5" hidden="">
+    <ol type="a">
+      <li>Le plus grand côté mesure 8 cm. On a 3 + 4 = 7 cm, et 8 &gt; 7. <b>Non</b>, le triangle est impossible à construire.</li>
+      <li>Le plus grand côté mesure 6 cm. On a 4 + 5 = 9 cm, et 6 &lt; 9. <b>Oui</b>, le triangle peut être construit.</li>
+    </ol>
+  </div>
+</div>
+
+<h2>2. Synthèse</h2>
+<div class="tc-wrap">
+<table>
+  <thead><tr><th>Triangle</th><th>Caractéristique</th></tr></thead>
+  <tbody>
+    <tr><td>Quelconque</td><td>3 côtés de longueurs différentes</td></tr>
+    <tr><td>Isocèle</td><td>2 côtés de même longueur</td></tr>
+    <tr><td>Équilatéral</td><td>3 côtés de même longueur</td></tr>
+    <tr><td>Rectangle</td><td>1 angle droit</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>Pr. Nabil TAROUS</footer>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('.tc-cours .tc-btn');
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function(){
+      var box=document.getElementById(this.getAttribute('data-target'));
+      var open=box.hasAttribute('hidden');
+      if(open){box.removeAttribute('hidden');}else{box.setAttribute('hidden','');}
+      this.setAttribute('aria-expanded',open?'true':'false');
+      this.textContent=open?'Masquer la correction':'Afficher la correction';
+    });
+  }
+})();
+</script>
+
+
+</body>
+</html>
