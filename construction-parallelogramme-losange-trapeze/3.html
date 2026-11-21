@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le trapèze</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours .fig{text-align:center;margin:12px 0}
+.cm2-cours .fig svg{width:100%;max-width:320px;height:auto;background:#fff;border:1px solid var(--bord);border-radius:10px}
+.cm2-cours .fig figcaption{font-size:.9rem;color:#5b6b7b}
+.cm2-cours .poly{fill:#e3f5f5;stroke:#14325c;stroke-width:3;stroke-linejoin:round}
+.cm2-cours .mk{stroke:#f4a81d;stroke-width:3;fill:none}
+.cm2-cours .arc1{stroke:#1aa6a6;stroke-width:2.5;fill:none}
+.cm2-cours .arc2{stroke:#f4a81d;stroke-width:2.5;fill:none}
+.cm2-cours .diag{stroke:#14325c;stroke-width:2;stroke-dasharray:6 4;fill:none}
+.cm2-cours .lb{font:700 15px Arial,sans-serif;fill:#14325c}
+.cm2-cours .dim{font:13px Arial,sans-serif;fill:#5b6b7b}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+<div class="cm2-cours"><div class="seance">Séance 3 : Le trapèze</div>
+
+<h2>1. Définition</h2>
+<div class="encadre">
+  <span class="titre">Définition</span>
+  Un <b>trapèze</b> est un quadrilatère qui a <b>deux côtés parallèles</b>. Ces deux côtés s'appellent les <b>bases</b>.
+</div>
+
+<figure class="fig">
+  <svg viewBox="0 0 160 125" role="img" aria-label="Trapèze ABCD">
+    <polygon class="poly" points="20,95 140,95 110,35 50,35"></polygon>
+    <path class="mk" d="M76 90 L84 95 L76 100 M76 30 L84 35 L76 40"></path>
+    <text class="lb" x="6" y="112">A</text><text class="lb" x="142" y="112">B</text>
+    <text class="lb" x="112" y="30">C</text><text class="lb" x="36" y="30">D</text>
+  </svg>
+  <figcaption>Trapèze ABCD : (AB) // (DC). Les bases sont [AB] et [DC].</figcaption>
+</figure>
+
+<div class="encadre regle">
+  <span class="titre">À savoir</span>
+  Un trapèze qui a <b>deux angles droits</b> s'appelle un <b>trapèze rectangle</b>.
+  <br>Deux droites perpendiculaires à une même droite sont <b>parallèles</b>.
+</div>
+
+<h2>2. Construction à la règle et à l'équerre</h2>
+<p><b>Exemple :</b> construire le trapèze rectangle ABCD tel que AB = 6 cm, AD = 3 cm, DC = 4 cm, avec (AD) ⟂ (AB).</p>
+<ol>
+  <li>Je trace [AB] de 6 cm.</li>
+  <li>Avec l'équerre, je trace en A la perpendiculaire à (AB). Je place D sur cette droite, avec AD = 3 cm.</li>
+  <li>Avec l'équerre, je trace en D la perpendiculaire à (AD) : elle est parallèle à (AB).</li>
+  <li>Sur cette droite, du côté de B, je place C avec DC = 4 cm.</li>
+  <li>Je relie B à C.</li>
+</ol>
+
+<figure class="fig">
+  <svg viewBox="0 0 250 180" role="img" aria-label="Construction du trapèze rectangle ABCD">
+    <polygon class="poly" points="30,150 210,150 150,60 30,60"></polygon>
+    <path class="mk" d="M30 138 H42 V150 M30 72 H42 V60 M114 144 L122 150 L114 156 M84 54 L92 60 L84 66"></path>
+    <text class="lb" x="14" y="166">A</text><text class="lb" x="212" y="166">B</text>
+    <text class="lb" x="152" y="54">C</text><text class="lb" x="14" y="56">D</text>
+    <text class="dim" x="108" y="170">6 cm</text><text class="dim" x="38" y="108">3 cm</text><text class="dim" x="80" y="50">4 cm</text>
+  </svg>
+  <figcaption>(AB) // (DC) car les deux sont perpendiculaires à (AD).</figcaption>
+</figure>
+
+<h2>3. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Dans le quadrilatère ABCD, on sait que (AB) // (DC), AB = 8 cm et DC = 5 cm. Quelle est la nature de ABCD ? Quelles sont ses bases ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c7">Afficher la correction</button>
+  <div class="correction" id="c7" hidden="">
+    <p>ABCD a deux côtés parallèles : c'est un <b>trapèze</b>.</p>
+    <p>Ses bases sont <b>[AB] et [DC]</b>.</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Calcule le périmètre du trapèze ABCD tel que AB = 6 cm, BC = 5 cm, CD = 4 cm et DA = 3 cm.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c8">Afficher la correction</button>
+  <div class="correction" id="c8" hidden="">
+    <p>P = AB + BC + CD + DA = 6 + 5 + 4 + 3 = <b>18 cm</b></p>
+  </div>
+</div>
+
+<div class="retenir">
+  <h2>À retenir</h2>
+  <ul>
+    <li><b>Parallélogramme</b> : côtés opposés parallèles et de même longueur ; diagonales qui se coupent en leur milieu.</li>
+    <li><b>Losange</b> : 4 côtés égaux ; diagonales perpendiculaires.</li>
+    <li><b>Trapèze</b> : 2 côtés parallèles (les bases).</li>
+    <li>Pour construire : règle, compas et équerre, et je code la figure.</li>
+  </ul>
+</div>
+
+<footer>Pr. Nabil TAROUS</footer>
+
+</div>
+
+<script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+
+
+</body>
+</html>

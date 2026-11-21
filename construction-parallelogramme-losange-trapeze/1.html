@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le parallélogramme</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours .fig{text-align:center;margin:12px 0}
+.cm2-cours .fig svg{width:100%;max-width:320px;height:auto;background:#fff;border:1px solid var(--bord);border-radius:10px}
+.cm2-cours .fig figcaption{font-size:.9rem;color:#5b6b7b}
+.cm2-cours .poly{fill:#e3f5f5;stroke:#14325c;stroke-width:3;stroke-linejoin:round}
+.cm2-cours .mk{stroke:#f4a81d;stroke-width:3;fill:none}
+.cm2-cours .arc1{stroke:#1aa6a6;stroke-width:2.5;fill:none}
+.cm2-cours .arc2{stroke:#f4a81d;stroke-width:2.5;fill:none}
+.cm2-cours .diag{stroke:#14325c;stroke-width:2;stroke-dasharray:6 4;fill:none}
+.cm2-cours .lb{font:700 15px Arial,sans-serif;fill:#14325c}
+.cm2-cours .dim{font:13px Arial,sans-serif;fill:#5b6b7b}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+
+<div class="cm2-cours">
+
+<div class="entete">
+  <h1>Construction d'une figure</h1>
+  <p>Le parallélogramme, le losange et le trapèze – CM2</p>
+</div>
+
+<!-- ============ SÉANCE 1 ============ -->
+<div class="seance">Séance 1 : Le parallélogramme</div>
+
+<h2>1. Définition et propriétés</h2>
+<div class="encadre">
+  <span class="titre">Définition</span>
+  Un <b>parallélogramme</b> est un quadrilatère dont les côtés opposés sont <b>parallèles deux à deux</b>.
+</div>
+
+<figure class="fig">
+  <svg viewBox="0 0 170 125" role="img" aria-label="Parallélogramme ABCD">
+    <polygon class="poly" points="20,100 120,100 150,35 50,35"></polygon>
+    <path class="mk" d="M70 95 V105 M100 30 V40 M31.3 63.6 L40.4 67.8 M29.7 67.2 L38.8 71.4 M131.3 63.6 L140.4 67.8 M129.7 67.2 L138.8 71.4"></path>
+    <text class="lb" x="6" y="116">A</text><text class="lb" x="122" y="116">B</text>
+    <text class="lb" x="152" y="32">C</text><text class="lb" x="36" y="30">D</text>
+  </svg>
+  <figcaption>Parallélogramme ABCD : (AB) // (DC) et (AD) // (BC)</figcaption>
+</figure>
+
+<div class="encadre regle">
+  <span class="titre">Propriétés</span>
+  <ul>
+    <li>Les côtés opposés ont la <b>même longueur</b> : AB = DC et AD = BC.</li>
+    <li>Les <b>diagonales</b> [AC] et [BD] se coupent <b>en leur milieu</b>.</li>
+  </ul>
+</div>
+
+<h2>2. Construction à la règle et au compas</h2>
+<p><b>Exemple :</b> construire le parallélogramme ABCD tel que AB = 5 cm, AD = 3 cm et BD = 7 cm.</p>
+<ol>
+  <li>Je trace [AB] de 5 cm.</li>
+  <li>Je trace un arc de centre A et de rayon 3 cm, puis un arc de centre B et de rayon 7 cm. Ils se coupent en D.</li>
+  <li>Je trace un arc de centre B et de rayon 3 cm (car BC = AD).</li>
+  <li>Je trace un arc de centre D et de rayon 5 cm (car DC = AB). Il coupe le précédent en C.</li>
+  <li>Je relie A–D, B–C, D–C.</li>
+</ol>
+
+<figure class="fig">
+  <svg viewBox="0 0 300 170" role="img" aria-label="Construction du parallélogramme ABCD">
+    <path class="arc1" d="M234.4 51.4 A90 90 0 0 0 181.1 82.1"></path>
+    <path class="arc2" d="M201.7 93.3 A150 150 0 0 0 201.7 30.9"></path>
+    <polygon class="poly" points="100,140 250,140 205,62 55,62"></polygon>
+    <line class="diag" x1="250" y1="140" x2="55" y2="62"></line>
+    <text class="lb" x="84" y="158">A</text><text class="lb" x="254" y="158">B</text>
+    <text class="lb" x="210" y="58">C</text><text class="lb" x="38" y="60">D</text>
+    <text class="dim" x="160" y="156">5 cm</text><text class="dim" x="44" y="108">3 cm</text>
+    <text class="dim" x="236" y="104">3 cm</text><text class="dim" x="112" y="54">5 cm</text><text class="dim" x="150" y="128">7 cm</text>
+  </svg>
+  <figcaption>Arc bleu : rayon 3 cm (centre B). Arc orange : rayon 5 cm (centre D).</figcaption>
+</figure>
+
+<h2>3. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> ABCD est un parallélogramme avec AB = 7 cm et BC = 4 cm. Donne les longueurs DC et AD.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c1">Afficher la correction</button>
+  <div class="correction" id="c1" hidden="">
+    <p>Les côtés opposés ont la même longueur.</p>
+    <p>DC = AB, donc <b>DC = 7 cm</b>. AD = BC, donc <b>AD = 4 cm</b>.</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Calcule le périmètre du parallélogramme ABCD de l'exemple 1.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c2">Afficher la correction</button>
+  <div class="correction" id="c2" hidden="">
+    <p>P = AB + BC + CD + DA = 7 + 4 + 7 + 4 = <b>22 cm</b></p>
+    <p>Autre calcul : P = 2 × (7 + 4) = 2 × 11 = <b>22 cm</b></p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Les diagonales du parallélogramme ABCD se coupent en O. On a AC = 10 cm et BD = 8 cm. Donne AO et BO.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c3">Afficher la correction</button>
+  <div class="correction" id="c3" hidden="">
+    <p>O est le milieu de [AC] : AO = 10 ÷ 2 = <b>5 cm</b>.</p>
+    <p>O est le milieu de [BD] : BO = 8 ÷ 2 = <b>4 cm</b>.</p>
+  </div>
+</div>
+
+<!-- ============ SÉANCE 2 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+</body>
+</html>

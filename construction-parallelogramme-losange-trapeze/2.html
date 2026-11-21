@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le losange</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours .fig{text-align:center;margin:12px 0}
+.cm2-cours .fig svg{width:100%;max-width:320px;height:auto;background:#fff;border:1px solid var(--bord);border-radius:10px}
+.cm2-cours .fig figcaption{font-size:.9rem;color:#5b6b7b}
+.cm2-cours .poly{fill:#e3f5f5;stroke:#14325c;stroke-width:3;stroke-linejoin:round}
+.cm2-cours .mk{stroke:#f4a81d;stroke-width:3;fill:none}
+.cm2-cours .arc1{stroke:#1aa6a6;stroke-width:2.5;fill:none}
+.cm2-cours .arc2{stroke:#f4a81d;stroke-width:2.5;fill:none}
+.cm2-cours .diag{stroke:#14325c;stroke-width:2;stroke-dasharray:6 4;fill:none}
+.cm2-cours .lb{font:700 15px Arial,sans-serif;fill:#14325c}
+.cm2-cours .dim{font:13px Arial,sans-serif;fill:#5b6b7b}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+<div class="cm2-cours"><div class="seance">Séance 2 : Le losange</div>
+
+<h2>1. Définition et propriétés</h2>
+<div class="encadre">
+  <span class="titre">Définition</span>
+  Un <b>losange</b> est un quadrilatère qui a <b>4 côtés de même longueur</b>.
+</div>
+
+<figure class="fig">
+  <svg viewBox="0 0 160 125" role="img" aria-label="Losange ABCD">
+    <polygon class="poly" points="20,62 80,20 140,62 80,104"></polygon>
+    <path class="mk" d="M47.1 36.9 L52.9 45.1 M112.9 36.9 L107.1 45.1 M107.1 78.9 L112.9 87.1 M47.1 87.1 L52.9 78.9"></path>
+    <text class="lb" x="4" y="66">A</text><text class="lb" x="76" y="14">B</text>
+    <text class="lb" x="143" y="66">C</text><text class="lb" x="76" y="120">D</text>
+  </svg>
+  <figcaption>Losange ABCD : AB = BC = CD = DA</figcaption>
+</figure>
+
+<div class="encadre regle">
+  <span class="titre">Propriétés</span>
+  <ul>
+    <li>Un losange est un <b>parallélogramme</b> : ses côtés opposés sont parallèles.</li>
+    <li>Ses <b>diagonales</b> se coupent <b>en leur milieu</b>.</li>
+    <li>Ses diagonales sont <b>perpendiculaires</b> (elles forment un angle droit).</li>
+  </ul>
+</div>
+
+<h2>2. Construction à la règle et au compas</h2>
+<p><b>Exemple :</b> construire le losange ABCD de côté 4 cm tel que AC = 6 cm.</p>
+<ol>
+  <li>Je trace la diagonale [AC] de 6 cm.</li>
+  <li>Je trace un arc de centre A et de rayon 4 cm, au-dessus et en dessous de [AC].</li>
+  <li>Avec le même rayon, je trace un arc de centre C. Les arcs se coupent en B (au-dessus) et en D (en dessous).</li>
+  <li>Je relie A–B, B–C, C–D et D–A.</li>
+</ol>
+
+<figure class="fig">
+  <svg viewBox="0 0 260 195" role="img" aria-label="Construction du losange ABCD">
+    <path class="arc1" d="M140.6 29.6 A120 120 0 0 0 117.1 3.1 M140.6 160.4 A120 120 0 0 1 117.1 186.9"></path>
+    <path class="arc2" d="M142.9 3.1 A120 120 0 0 0 118.2 31.4 M142.9 186.9 A120 120 0 0 1 118.2 158.6"></path>
+    <polygon class="poly" points="40,95 130,15.6 220,95 130,174.4"></polygon>
+    <line class="diag" x1="40" y1="95" x2="220" y2="95"></line>
+    <line class="diag" x1="130" y1="15.6" x2="130" y2="174.4"></line>
+    <path class="mk" d="M140 95 V85 H130"></path>
+    <text class="lb" x="22" y="99">A</text><text class="lb" x="148" y="22">B</text>
+    <text class="lb" x="224" y="99">C</text><text class="lb" x="148" y="178">D</text>
+    <text class="dim" x="146" y="112">6 cm</text><text class="dim" x="62" y="46">4 cm</text>
+  </svg>
+  <figcaption>Arcs bleus : centre A. Arcs orange : centre C. Même rayon : 4 cm.</figcaption>
+</figure>
+
+<h2>3. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> ABCD est un losange de côté 5 cm. Donne la longueur de chaque côté, puis son périmètre.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c4">Afficher la correction</button>
+  <div class="correction" id="c4" hidden="">
+    <p>Les 4 côtés ont la même longueur : AB = BC = CD = DA = <b>5 cm</b>.</p>
+    <p>P = 4 × 5 = <b>20 cm</b></p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Les diagonales du losange ABCD se coupent en O. On a AC = 12 cm et BD = 10 cm. Donne OA, OB et la mesure de l'angle AOB.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c5">Afficher la correction</button>
+  <div class="correction" id="c5" hidden="">
+    <p>O est le milieu de [AC] : OA = 12 ÷ 2 = <b>6 cm</b>.</p>
+    <p>O est le milieu de [BD] : OB = 10 ÷ 2 = <b>5 cm</b>.</p>
+    <p>Les diagonales sont perpendiculaires : l'angle AOB est un <b>angle droit (90°)</b>.</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Un losange a un périmètre de 28 cm. Quelle est la longueur de son côté ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c6">Afficher la correction</button>
+  <div class="correction" id="c6" hidden="">
+    <p>Le losange a 4 côtés égaux : côté = 28 ÷ 4 = <b>7 cm</b>.</p>
+    <p>Vérification : 4 × 7 = 28 ✔</p>
+  </div>
+</div>
+
+<!-- ============ SÉANCE 3 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+</body>
+</html>
