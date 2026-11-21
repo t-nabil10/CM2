@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organiser et lire des données dans un tableau</title>
+<style>
+.cm1-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm1-cours *,.cm1-cours *::before,.cm1-cours *::after{box-sizing:border-box}
+.cm1-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px}
+.cm1-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm1-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm1-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm1-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm1-cours p{margin:6px 0}
+.cm1-cours ul,.cm1-cours ol{margin:6px 0;padding-left:1.4em}
+.cm1-cours li{margin:3px 0}
+.cm1-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm1-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm1-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm1-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm1-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm1-cours .exemple .enonce span{color:var(--jaune);font-weight:800}
+.cm1-cours .tableau-box{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0}
+.cm1-cours table{border-collapse:collapse;width:100%;background:#fff;font-size:.95rem}
+.cm1-cours th,.cm1-cours td{border:1px solid var(--bord);padding:6px 8px;text-align:center}
+.cm1-cours th{background:var(--marine);color:#fff}
+.cm1-cours td.tot,.cm1-cours th.tot{font-weight:700;background:var(--jaune-clair);color:var(--marine)}
+.cm1-cours .graph{max-width:480px;margin:8px auto}
+.cm1-cours .graph svg{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--bord);border-radius:8px}
+.cm1-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm1-cours .btn-corr:hover{background:var(--marine);color:#fff}
+.cm1-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm1-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm1-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm1-cours .correction[hidden]{display:none}
+.cm1-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm1-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm1-cours .retenir ul{margin:0}
+.cm1-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm1-cours{font-size:17px;padding:10px}
+  .cm1-cours .entete h1{font-size:1.3rem}
+  .cm1-cours .btn-corr{width:100%}
+}
+@media print{.cm1-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+
+<div class="cm1-cours">
+
+<div class="entete">
+  <h1>Organisation et traitement des données</h1>
+  <p>Tableaux et diagrammes en barres – CM1</p>
+</div>
+
+<!-- ============ SÉANCE 1 ============ -->
+<div class="seance">Séance 1 : Organiser et lire des données dans un tableau</div>
+
+<h2>1. Vocabulaire</h2>
+<div class="encadre">
+  <span class="titre">Définitions</span>
+  <ul>
+    <li>Une <b>donnée</b> est une information recueillie (un choix, une mesure, un nombre).</li>
+    <li>L'<b>effectif</b> est le nombre de fois où une donnée apparaît.</li>
+    <li>Le <b>total</b> est la somme de tous les effectifs.</li>
+  </ul>
+</div>
+
+<h2>2. Organiser des données</h2>
+<div class="encadre regle">
+  <span class="titre">Méthode</span>
+  <ol>
+    <li>Je lis les données <b>une par une</b> et je les barre au fur et à mesure.</li>
+    <li>Je compte les effectifs de chaque catégorie.</li>
+    <li>Je range les résultats dans un <b>tableau</b>.</li>
+    <li>Je vérifie : la somme des effectifs doit être égale au nombre total de données.</li>
+  </ol>
+</div>
+
+<h2>3. Types de présentation</h2>
+<div class="tableau-box">
+<table>
+  <tbody><tr><th>Présentation</th><th>Description</th></tr>
+  <tr><td><b>Tableau à une entrée</b></td><td>Une ligne de catégories et une ligne d'effectifs.</td></tr>
+  <tr><td><b>Tableau à double entrée</b></td><td>On lit un effectif à l'intersection d'une <b>ligne</b> et d'une <b>colonne</b>.</td></tr>
+</tbody></table>
+</div>
+
+<h2>4. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Les 20 élèves d'une classe choisissent leur fruit préféré :<br>
+  pomme, orange, banane, orange, pomme, fraise, orange, banane, pomme, orange, banane, pomme, orange, orange, banane, pomme, fraise, banane, pomme, orange.<br>
+  Organise ces données dans un tableau.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c1">Afficher la correction</button>
+  <div class="correction" id="c1" hidden="">
+    <div class="tableau-box">
+    <table>
+      <tbody><tr><th>Fruit</th><th>Pomme</th><th>Orange</th><th>Banane</th><th>Fraise</th><th>Total</th></tr>
+      <tr><th>Effectif</th><td>6</td><td>7</td><td>5</td><td>2</td><td class="tot">20</td></tr>
+    </tbody></table>
+    </div>
+    <p>Vérification : 6 + 7 + 5 + 2 = 20 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Tableau à double entrée : le sport choisi par les élèves d'une classe.</p>
+  <div class="tableau-box">
+  <table>
+    <tbody><tr><th></th><th>Football</th><th>Natation</th></tr>
+    <tr><th>Filles</th><td>4</td><td>8</td></tr>
+    <tr><th>Garçons</th><td>9</td><td>3</td></tr>
+  </tbody></table>
+  </div>
+  <p class="enonce">a) Combien de garçons font de la natation ?<br>b) Combien de garçons y a-t-il ?<br>c) Combien d'élèves y a-t-il dans la classe ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c2">Afficher la correction</button>
+  <div class="correction" id="c2" hidden="">
+    <p>a) Ligne « Garçons », colonne « Natation » : <b>3 garçons</b>.</p>
+    <p>b) 9 + 3 = <b>12 garçons</b>.</p>
+    <p>c) 4 + 8 + 9 + 3 = <b>24 élèves</b>.</p>
+  </div>
+</div>
+
+<!-- ============ SÉANCE 2 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var racine=document.querySelector('.cm1-cours');
+  if(!racine)return;
+
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+
+  function el(n,a,t){
+    var x=document.createElementNS('http://www.w3.org/2000/svg',n);
+    for(var k in a)x.setAttribute(k,a[k]);
+    if(t!==undefined)x.textContent=t;
+    return x;
+  }
+  var cols=['#14325c','#1aa6a6','#f4a81d','#3d6fb3','#6cc7c7'];
+  racine.querySelectorAll('.graph').forEach(function(g){
+    var lab=g.dataset.labels.split(','),
+        val=g.dataset.values.split(',').map(Number),
+        max=+g.dataset.max, step=+g.dataset.step, show=g.dataset.show==='1',
+        L=44,T=34,W=340,H=180,n=lab.length,slot=W/n,bw=slot*0.6;
+    var s=el('svg',{viewBox:'0 0 400 260',role:'img','aria-label':g.dataset.title});
+    s.appendChild(el('text',{x:200,y:18,'text-anchor':'middle','font-size':14,'font-weight':700,fill:'#14325c'},g.dataset.title));
+    for(var v=0;v<=max;v+=step){
+      var y=T+H-v/max*H;
+      s.appendChild(el('line',{x1:L,y1:y,x2:L+W,y2:y,stroke:v===0?'#14325c':'#d5dfeb','stroke-width':v===0?2:1}));
+      s.appendChild(el('text',{x:L-6,y:y+4,'text-anchor':'end','font-size':11,fill:'#1d2a3a'},v));
+    }
+    s.appendChild(el('line',{x1:L,y1:T,x2:L,y2:T+H,stroke:'#14325c','stroke-width':2}));
+    val.forEach(function(d,i){
+      var h=d/max*H,x=L+i*slot+(slot-bw)/2;
+      s.appendChild(el('rect',{x:x,y:T+H-h,width:bw,height:h,fill:cols[i%cols.length]}));
+      if(show)s.appendChild(el('text',{x:x+bw/2,y:T+H-h-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:'#14325c'},d));
+      s.appendChild(el('text',{x:x+bw/2,y:T+H+18,'text-anchor':'middle','font-size':n>4?10:11,fill:'#1d2a3a'},lab[i]));
+    });
+    g.appendChild(s);
+  });
+})();
+</script>
+</body>
+</html>
