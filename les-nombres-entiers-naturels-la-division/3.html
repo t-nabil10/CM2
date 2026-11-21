@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cas particuliers et problèmes</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .formule{text-align:center;font-weight:700;font-size:1.15rem;color:var(--marine);margin:6px 0}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours pre.pose{font-family:"Courier New",Consolas,monospace;font-size:1.15rem;line-height:1.3;background:#fff;border:1px dashed var(--turq);border-radius:8px;padding:8px 14px;margin:8px auto;width:fit-content;max-width:100%;overflow-x:auto;color:var(--marine)}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours pre.pose{font-size:1.05rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+<div class="cm2-cours"><div class="seance">Séance 3 : Cas particuliers et problèmes</div>
+
+<h2>1. Diviser par 10, 100 ou 1 000</h2>
+<div class="encadre regle">
+  <span class="titre">Règle</span>
+  <ul>
+    <li>Diviser par <b>10</b> : le <b>reste</b> est le chiffre des unités ; le <b>quotient</b> est le nombre sans ce chiffre.</li>
+    <li>Diviser par <b>100</b> : le reste est formé des 2 derniers chiffres.</li>
+    <li>Diviser par <b>1 000</b> : le reste est formé des 3 derniers chiffres.</li>
+  </ul>
+</div>
+
+<h2>2. Autres cas</h2>
+<div class="encadre">
+  <span class="titre">À savoir</span>
+  <ul>
+    <li>Si, après avoir abaissé un chiffre, le nombre est <b>plus petit</b> que le diviseur, j'écris <b>0</b> au quotient et j'abaisse le chiffre suivant.</li>
+    <li>Pour retrouver le dividende : <b>D = d × q + r</b>.</li>
+  </ul>
+</div>
+
+<h2>3. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Divise 4 538 par 10, par 100, puis par 1 000.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c9">Afficher la correction</button>
+  <div class="correction" id="c9" hidden="">
+    <ul>
+      <li>4 538 = 10 × <b>453</b> + <b>8</b></li>
+      <li>4 538 = 100 × <b>45</b> + <b>38</b></li>
+      <li>4 538 = 1 000 × <b>4</b> + <b>538</b></li>
+    </ul>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Calcule 6 207 ÷ 3 (attention au zéro).</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c10">Afficher la correction</button>
+  <div class="correction" id="c10" hidden="">
+    <ul>
+      <li>6 ÷ 3 : 2 fois, reste 0.</li>
+      <li>J'abaisse 2 → 2 ÷ 3 : 0 fois, reste 2. J'écris <b>0</b> au quotient.</li>
+      <li>J'abaisse 0 → 20 ÷ 3 : 6 fois (18), reste 2.</li>
+      <li>J'abaisse 7 → 27 ÷ 3 : 9 fois (27), reste 0.</li>
+    </ul>
+    <p><b>6 207 = 3 × 2 069 + 0</b> : la division est exacte.</p>
+    <p>Vérification : 3 × 2 069 = 6 207 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Dans une division, le diviseur est 12, le quotient est 15 et le reste est 7. Retrouve le dividende.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c11">Afficher la correction</button>
+  <div class="correction" id="c11" hidden="">
+    <p>D = d × q + r = 12 × 15 + 7 = 180 + 7 = <b>187</b></p>
+    <p>Le dividende est 187.</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Problème.</span> Un autocar contient 45 places. Combien d'autocars faut-il pour transporter 200 élèves ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c12">Afficher la correction</button>
+  <div class="correction" id="c12" hidden="">
+    <p>200 = 45 × 4 + 20 : 4 autocars sont pleins et il reste 20 élèves.</p>
+    <p>Ces 20 élèves ont besoin d'un autocar de plus.</p>
+    <p><b>Phrase réponse :</b> Il faut 5 autocars.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <h2>À retenir</h2>
+  <ul>
+    <li>D = d × q + r, avec <b>r &lt; d</b>.</li>
+    <li>Reste égal à 0 : division exacte, D est un multiple de d.</li>
+    <li>Je vérifie toujours : d × q + r = D.</li>
+    <li>Si un nombre abaissé est plus petit que le diviseur, j'écris 0 au quotient.</li>
+  </ul>
+</div>
+
+<footer>Pr. Nabil TAROUS</footer>
+
+</div>
+
+<script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+
+
+</body>
+</html>

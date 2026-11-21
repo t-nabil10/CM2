@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La division euclidienne</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .formule{text-align:center;font-weight:700;font-size:1.15rem;color:var(--marine);margin:6px 0}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours pre.pose{font-family:"Courier New",Consolas,monospace;font-size:1.15rem;line-height:1.3;background:#fff;border:1px dashed var(--turq);border-radius:8px;padding:8px 14px;margin:8px auto;width:fit-content;max-width:100%;overflow-x:auto;color:var(--marine)}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours pre.pose{font-size:1.05rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+
+<div class="cm2-cours">
+
+<div class="entete">
+  <h1>Les nombres entiers naturels : la division</h1>
+  <p>Mathématiques – CM2 – Calcul</p>
+</div>
+
+<!-- ============ SÉANCE 1 ============ -->
+<div class="seance">Séance 1 : La division euclidienne</div>
+
+<h2>1. Vocabulaire</h2>
+<div class="encadre">
+  <span class="titre">Définition</span>
+  <b>Diviser</b> un nombre (le <b>dividende</b>) par un autre (le <b>diviseur</b>), c'est chercher combien de fois le diviseur est contenu dans le dividende. On obtient un <b>quotient</b> et un <b>reste</b>.
+  <div class="formule">D = d × q + r &nbsp; avec &nbsp; r &lt; d</div>
+  <b>D</b> : dividende ; <b>d</b> : diviseur ; <b>q</b> : quotient ; <b>r</b> : reste.
+</div>
+
+<h2>2. Règles</h2>
+<div class="encadre regle">
+  <span class="titre">Règles</span>
+  <ul>
+    <li>Le <b>reste</b> est toujours <b>plus petit</b> que le diviseur.</li>
+    <li>Si le reste est <b>0</b>, la division est <b>exacte</b> : le dividende est un <b>multiple</b> du diviseur.</li>
+    <li><b>Vérification :</b> d × q + r = D.</li>
+  </ul>
+</div>
+
+<h2>3. Division posée (diviseur à 1 chiffre)</h2>
+<div class="encadre regle">
+  <span class="titre">Méthode</span>
+  <ol>
+    <li>Je prends, à gauche du dividende, le plus petit nombre qui contient le diviseur.</li>
+    <li>Je cherche combien de fois le diviseur y est contenu : j'écris ce chiffre au quotient.</li>
+    <li>Je multiplie, puis je soustrais pour trouver le reste.</li>
+    <li>J'abaisse le chiffre suivant et je recommence.</li>
+    <li>Je m'arrête après le dernier chiffre. Le reste est plus petit que le diviseur.</li>
+  </ol>
+</div>
+
+<h2>4. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Écris l'égalité de la division de 47 par 5.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c1">Afficher la correction</button>
+  <div class="correction" id="c1" hidden="">
+    <p>5 × 9 = 45 et 47 − 45 = 2.</p>
+    <p><b>47 = 5 × 9 + 2</b> : quotient 9, reste 2 (et 2 &lt; 5).</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Pose et calcule : 3 745 ÷ 6</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c2">Afficher la correction</button>
+  <div class="correction" id="c2" hidden="">
+<pre class="pose"> 3745 │ 6
+−36   │────
+ ──   │ 624
+  14
+ −12
+  ──
+   25
+  −24
+   ──
+    1</pre>
+    <ul>
+      <li>37 ÷ 6 : 6 fois (36), reste 1.</li>
+      <li>J'abaisse 4 → 14 ÷ 6 : 2 fois (12), reste 2.</li>
+      <li>J'abaisse 5 → 25 ÷ 6 : 4 fois (24), reste 1.</li>
+    </ul>
+    <p><b>3 745 = 6 × 624 + 1</b> (quotient 624, reste 1)</p>
+    <p>Vérification : 6 × 624 = 3 744 ; 3 744 + 1 = 3 745 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Calcule 8 539 ÷ 7 et vérifie.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c3">Afficher la correction</button>
+  <div class="correction" id="c3" hidden="">
+    <ul>
+      <li>8 ÷ 7 : 1 fois (7), reste 1.</li>
+      <li>15 ÷ 7 : 2 fois (14), reste 1.</li>
+      <li>13 ÷ 7 : 1 fois (7), reste 6.</li>
+      <li>69 ÷ 7 : 9 fois (63), reste 6.</li>
+    </ul>
+    <p><b>8 539 = 7 × 1 219 + 6</b> (quotient 1 219, reste 6)</p>
+    <p>Vérification : 7 × 1 219 = 8 533 ; 8 533 + 6 = 8 539 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Problème.</span> Un magasin range 125 billes dans des sachets de 8 billes. Combien de sachets complets obtient-il ? Combien de billes restent ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c4">Afficher la correction</button>
+  <div class="correction" id="c4" hidden="">
+    <p>Je cherche combien de fois 8 est contenu dans 125 : je divise.</p>
+    <p>125 = 8 × 15 + 5</p>
+    <p><b>Phrase réponse :</b> Il obtient 15 sachets complets et il reste 5 billes.</p>
+  </div>
+</div>
+
+<!-- ============ SÉANCE 2 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+</body>
+</html>

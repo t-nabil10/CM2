@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Division par un nombre à 2 chiffres</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .formule{text-align:center;font-weight:700;font-size:1.15rem;color:var(--marine);margin:6px 0}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours pre.pose{font-family:"Courier New",Consolas,monospace;font-size:1.15rem;line-height:1.3;background:#fff;border:1px dashed var(--turq);border-radius:8px;padding:8px 14px;margin:8px auto;width:fit-content;max-width:100%;overflow-x:auto;color:var(--marine)}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours pre.pose{font-size:1.05rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+<div class="cm2-cours"><div class="seance">Séance 2 : Division par un nombre à 2 chiffres</div>
+
+<h2>1. Méthode</h2>
+<div class="encadre regle">
+  <span class="titre">Méthode</span>
+  <ol>
+    <li>Je prends, à gauche, le plus petit nombre qui contient le diviseur (souvent 2 ou 3 chiffres).</li>
+    <li>Je cherche le chiffre du quotient avec la <b>table des multiples</b> du diviseur.</li>
+    <li>Je multiplie, je soustrais, puis j'abaisse le chiffre suivant.</li>
+    <li>Je recommence jusqu'au dernier chiffre.</li>
+  </ol>
+</div>
+<div class="encadre">
+  <span class="titre">Attention</span>
+  <ul>
+    <li>Si le produit est <b>trop grand</b>, je prends un quotient plus petit.</li>
+    <li>Si le reste est <b>plus grand ou égal</b> au diviseur, mon quotient est trop petit : je recommence avec un chiffre plus grand.</li>
+  </ul>
+</div>
+
+<h2>2. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Pose et calcule : 957 ÷ 23</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c5">Afficher la correction</button>
+  <div class="correction" id="c5" hidden="">
+<pre class="pose"> 957 │ 23
+−92  │────
+ ──  │ 41
+  37
+ −23
+  ──
+  14</pre>
+    <ul>
+      <li>95 ÷ 23 : 4 fois (23 × 4 = 92), reste 3.</li>
+      <li>J'abaisse 7 → 37 ÷ 23 : 1 fois (23), reste 14.</li>
+    </ul>
+    <p><b>957 = 23 × 41 + 14</b> (quotient 41, reste 14)</p>
+    <p>Vérification : 23 × 41 = 943 ; 943 + 14 = 957 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Calcule 4 368 ÷ 36 et vérifie.</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c6">Afficher la correction</button>
+  <div class="correction" id="c6" hidden="">
+    <ul>
+      <li>43 ÷ 36 : 1 fois (36), reste 7.</li>
+      <li>J'abaisse 6 → 76 ÷ 36 : 2 fois (72), reste 4.</li>
+      <li>J'abaisse 8 → 48 ÷ 36 : 1 fois (36), reste 12.</li>
+    </ul>
+    <p><b>4 368 = 36 × 121 + 12</b> (quotient 121, reste 12)</p>
+    <p>Vérification : 36 × 121 = 4 356 ; 4 356 + 12 = 4 368 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Pose et calcule : 7 589 ÷ 45</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c7">Afficher la correction</button>
+  <div class="correction" id="c7" hidden="">
+    <p>Multiples de 45 : 45 ; 90 ; 135 ; 180 ; 225 ; 270 ; 315 ; 360 ; 405.</p>
+<pre class="pose"> 7589 │ 45
+−45   │────
+ ──   │ 168
+ 308
+−270
+ ───
+  389
+ −360
+  ───
+   29</pre>
+    <ul>
+      <li>75 ÷ 45 : 1 fois (45), reste 30.</li>
+      <li>J'abaisse 8 → 308 ÷ 45 : 6 fois (270), reste 38.</li>
+      <li>J'abaisse 9 → 389 ÷ 45 : 8 fois (360), reste 29.</li>
+    </ul>
+    <p><b>7 589 = 45 × 168 + 29</b> (quotient 168, reste 29)</p>
+    <p>Vérification : 45 × 168 = 7 560 ; 7 560 + 29 = 7 589 ✔</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Problème.</span> On répartit 1 560 livres dans 24 cartons identiques. Combien de livres y a-t-il dans chaque carton ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c8">Afficher la correction</button>
+  <div class="correction" id="c8" hidden="">
+    <p>Je partage en parts égales : je divise.</p>
+    <ul>
+      <li>156 ÷ 24 : 6 fois (144), reste 12.</li>
+      <li>J'abaisse 0 → 120 ÷ 24 : 5 fois (120), reste 0.</li>
+    </ul>
+    <p>1 560 = 24 × 65 + 0</p>
+    <p><b>Phrase réponse :</b> Il y a 65 livres dans chaque carton.</p>
+  </div>
+</div>
+
+<!-- ============ SÉANCE 3 ============ -->
+<footer>Pr. Nabil TAROUS</footer></div><script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+</body>
+</html>
