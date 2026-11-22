@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diviser un entier, quotient décimal</title>
+<style>
+.cm2-cours{
+  --marine:#14325c; --turq:#1aa6a6; --turq-clair:#e3f5f5; --jaune:#f4a81d; --jaune-clair:#fff4d9;
+  --fond:#f6f9fc; --texte:#1d2a3a; --bord:#d5dfeb;
+  font-family:"Segoe UI",Tahoma,Verdana,Arial,sans-serif;
+  color:var(--texte); background:var(--fond);
+  max-width:900px; margin:0 auto; padding:16px; box-sizing:border-box;
+  font-size:18px; line-height:1.55; overflow-wrap:break-word;
+}
+.cm2-cours *,.cm2-cours *::before,.cm2-cours *::after{box-sizing:border-box}
+.cm2-cours .entete{background:var(--marine);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:20px;border-bottom:5px solid var(--jaune)}
+.cm2-cours .entete h1{margin:0;font-size:1.6rem;line-height:1.25;color:#fff}
+.cm2-cours .entete p{margin:6px 0 0;color:#bfe9e9;font-size:.95rem}
+.cm2-cours .seance{margin:28px 0 14px;padding:10px 16px;background:var(--turq);color:#fff;border-radius:10px;font-weight:700;font-size:1.15rem}
+.cm2-cours h2{color:var(--marine);font-size:1.3rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid var(--turq-clair)}
+.cm2-cours p{margin:6px 0}
+.cm2-cours ul,.cm2-cours ol{margin:6px 0;padding-left:1.4em}
+.cm2-cours li{margin:3px 0}
+.cm2-cours .encadre{border-left:6px solid var(--turq);background:var(--turq-clair);border-radius:8px;padding:10px 14px;margin:12px 0}
+.cm2-cours .encadre.regle{border-left-color:var(--jaune);background:var(--jaune-clair)}
+.cm2-cours .encadre .titre{display:block;font-weight:700;color:var(--marine);margin-bottom:4px}
+.cm2-cours .formule{text-align:center;font-weight:700;font-size:1.1rem;color:var(--marine);margin:6px 0}
+.cm2-cours .exemple{border:1px solid var(--bord);background:#fff;border-radius:10px;padding:12px 14px;margin:14px 0}
+.cm2-cours .exemple .enonce{font-weight:600;margin:0 0 8px}
+.cm2-cours .exemple .enonce span{color:#d98a00;font-weight:800}
+.cm2-cours pre.pose{font-family:"Courier New",Consolas,monospace;font-size:1.15rem;line-height:1.3;background:#fff;border:1px dashed var(--turq);border-radius:8px;padding:8px 14px;margin:8px auto;width:fit-content;max-width:100%;overflow-x:auto;color:var(--marine)}
+.cm2-cours .btn-corr{display:inline-block;min-height:44px;padding:8px 16px;margin-top:4px;border:2px solid var(--marine);background:#fff;color:var(--marine);border-radius:999px;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer}
+.cm2-cours .btn-corr:hover,.cm2-cours .btn-corr[aria-expanded="true"]{background:var(--marine);color:#fff}
+.cm2-cours .btn-corr:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+.cm2-cours .correction{margin-top:10px;padding:10px 14px;background:var(--jaune-clair);border-radius:8px;border-left:6px solid var(--jaune)}
+.cm2-cours .correction[hidden]{display:none}
+.cm2-cours .retenir{background:var(--marine);color:#fff;border-radius:12px;padding:14px 18px;margin:20px 0}
+.cm2-cours .retenir h2{color:var(--jaune);border:0;margin:0 0 6px;padding:0}
+.cm2-cours .retenir ul{margin:0}
+.cm2-cours footer{margin-top:26px;padding-top:10px;border-top:1px solid var(--bord);text-align:center;font-size:.85rem;color:#6b7a8d}
+@media (max-width:600px){
+  .cm2-cours{font-size:17px;padding:10px}
+  .cm2-cours .entete h1{font-size:1.3rem}
+  .cm2-cours pre.pose{font-size:1.05rem}
+  .cm2-cours .btn-corr{width:100%}
+}
+@media print{.cm2-cours .btn-corr{display:none}}
+</style>
+</head>
+<body>
+<div class="cm2-cours"><div class="seance">Séance 4 : Diviser un entier, quotient décimal</div>
+
+<h2>1. Méthode</h2>
+<div class="encadre regle">
+  <span class="titre">Méthode</span>
+  Quand il reste quelque chose après les unités, je peux continuer la division :
+  <ol>
+    <li>Je divise l'entier. Il reste un reste différent de 0.</li>
+    <li>J'écris <b>une virgule au quotient</b>.</li>
+    <li>J'ajoute un <b>zéro</b> au reste et je continue la division.</li>
+    <li>Je continue (zéro après zéro) jusqu'à obtenir un reste égal à 0.</li>
+  </ol>
+  <div class="formule">7 ÷ 2 = 3,5 &nbsp;car&nbsp; 2 × 3,5 = 7</div>
+</div>
+
+<h2>2. Exemples corrigés</h2>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 1.</span> Calcule : 7 ÷ 2</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c13">Afficher la correction</button>
+  <div class="correction" id="c13" hidden="">
+    <ul>
+      <li>7 ÷ 2 : 3 fois (6), reste 1.</li>
+      <li>J'écris la virgule au quotient. J'ajoute un zéro au reste : 10 ÷ 2 = 5, reste 0.</li>
+    </ul>
+    <p><b>7 ÷ 2 = 3,5</b> (vérification : 2 × 3,5 = 7 ✔)</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 2.</span> Calcule : 45 ÷ 4</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c14">Afficher la correction</button>
+  <div class="correction" id="c14" hidden="">
+    <ul>
+      <li>45 ÷ 4 : 11 fois (44), reste 1.</li>
+      <li>Virgule au quotient. 10 ÷ 4 : 2 fois (8), reste 2.</li>
+      <li>J'ajoute un zéro : 20 ÷ 4 = 5, reste 0.</li>
+    </ul>
+    <p><b>45 ÷ 4 = 11,25</b> (vérification : 4 × 11,25 = 45 ✔)</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Exemple 3.</span> Calcule : a) 3 ÷ 4 &nbsp; b) 123 ÷ 5</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c15">Afficher la correction</button>
+  <div class="correction" id="c15" hidden="">
+    <p><b>a)</b> 3 ÷ 4 : 0 fois. J'écris 0, puis la virgule. 30 ÷ 4 : 7 fois (28), reste 2. 20 ÷ 4 = 5, reste 0.</p>
+    <p><b>3 ÷ 4 = 0,75</b> (vérification : 4 × 0,75 = 3 ✔)</p>
+    <p><b>b)</b> 12 ÷ 5 : 2 fois (10), reste 2. J'abaisse 3 → 23 ÷ 5 : 4 fois (20), reste 3. Virgule au quotient. 30 ÷ 5 = 6, reste 0.</p>
+    <p><b>123 ÷ 5 = 24,6</b> (vérification : 5 × 24,6 = 123 ✔)</p>
+  </div>
+</div>
+
+<div class="exemple">
+  <p class="enonce"><span>Problème.</span> On coupe une corde de 26 m en 8 morceaux de même longueur. Quelle est la longueur d'un morceau ?</p>
+  <button class="btn-corr" type="button" aria-expanded="false" aria-controls="c16">Afficher la correction</button>
+  <div class="correction" id="c16" hidden="">
+    <p>Je partage en parts égales : je divise.</p>
+    <ul>
+      <li>26 ÷ 8 : 3 fois (24), reste 2.</li>
+      <li>Virgule au quotient. 20 ÷ 8 : 2 fois (16), reste 4.</li>
+      <li>40 ÷ 8 = 5, reste 0.</li>
+    </ul>
+    <p>26 ÷ 8 = 3,25</p>
+    <p><b>Phrase réponse :</b> Chaque morceau mesure 3,25 m.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <h2>À retenir</h2>
+  <ul>
+    <li>× 10, × 100, × 1 000 : la virgule avance vers la droite. ÷ 10, ÷ 100, ÷ 1 000 : la virgule recule vers la gauche.</li>
+    <li>Multiplication : je multiplie sans virgule, puis je place la virgule (somme des chiffres après la virgule des deux facteurs).</li>
+    <li>Division : j'écris la virgule au quotient quand j'abaisse le premier chiffre après la virgule, ou quand j'ajoute un zéro au reste.</li>
+    <li>Je vérifie : diviseur × quotient = dividende.</li>
+  </ul>
+</div>
+
+<footer>Pr. Nabil TAROUS</footer>
+
+</div>
+
+<script>
+(function(){
+  var racine=document.querySelector('.cm2-cours');
+  if(!racine)return;
+  racine.addEventListener('click',function(e){
+    var b=e.target.closest('.btn-corr');
+    if(!b||!racine.contains(b))return;
+    var c=document.getElementById(b.getAttribute('aria-controls'));
+    if(!c)return;
+    var ouvert=b.getAttribute('aria-expanded')==='true';
+    c.hidden=ouvert;
+    b.setAttribute('aria-expanded',ouvert?'false':'true');
+    b.textContent=ouvert?'Afficher la correction':'Masquer la correction';
+  });
+})();
+</script>
+
+
+</body>
+</html>
